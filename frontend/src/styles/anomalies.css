@@ -1,0 +1,594 @@
+/* Anomalies Module Stylesheet */
+
+.anomaly-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Anomaly Page Header */
+.anomaly-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.anomaly-title-block {
+  flex: 1;
+  min-width: 300px;
+}
+
+.anomaly-title-block .module-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.anomaly-title-block h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+
+.anomaly-title-block p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+/* Severity Statistics Grid */
+.anomaly-stats-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.anomaly-stat-panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-width: 100px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90px;
+}
+
+.anomaly-stat-panel span {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.anomaly-stat-panel h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 6px;
+  line-height: 1;
+}
+
+.anomaly-stat-panel.green h2 {
+  color: var(--low);
+}
+
+.anomaly-stat-panel.red h2 {
+  color: var(--critical);
+}
+
+/* Map Card */
+.anomaly-map-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.anomaly-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.anomaly-section-header h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.anomaly-map-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.anomaly-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.anomaly-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.anomaly-legend-dot.green { background-color: var(--low); }
+.anomaly-legend-dot.red { background-color: var(--critical); }
+.anomaly-legend-dot.grey { background-color: #94a3b8; }
+
+.anomaly-map-box {
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  z-index: 1;
+}
+
+/* Search and Hierarchy Bar */
+.anomaly-control-bar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.anomaly-search-input {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  transition: all 0.2s;
+}
+
+.anomaly-search-input:focus-within {
+  border-color: var(--primary);
+  background: white;
+}
+
+.anomaly-search-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.anomaly-dropdown {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  min-width: 180px;
+  transition: border 0.2s;
+}
+
+.anomaly-dropdown:focus {
+  border-color: var(--primary);
+}
+
+/* Recent Detections Section */
+.anomaly-panel-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.anomaly-panel-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
+
+.anomaly-detections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.detection-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.detection-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.detection-snapshot {
+  height: 140px;
+  background: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.detection-snapshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detection-severity-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.detection-severity-tag.critical {
+  background: #fdecec;
+  color: #c0392b;
+  border: 1px solid rgba(192, 57, 43, 0.2);
+}
+
+.detection-severity-tag.high {
+  background: #fff6e4;
+  color: #d68910;
+  border: 1px solid rgba(214, 137, 16, 0.2);
+}
+
+.detection-severity-tag.medium {
+  background: #ebf4ff;
+  color: #2e6ebe;
+  border: 1px solid rgba(46, 110, 190, 0.2);
+}
+
+.detection-severity-tag.low {
+  background: #eaf7ee;
+  color: #2e8b57;
+  border: 1px solid rgba(46, 139, 87, 0.2);
+}
+
+.detection-camera-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.75);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(2px);
+}
+
+.detection-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detection-location {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.detection-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.detection-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+.detection-confidence {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.detection-status {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Evidence Gallery Section */
+.anomaly-gallery-filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.date-picker-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+}
+
+.evidence-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.evidence-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.evidence-preview-box {
+  height: 180px;
+  background: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.evidence-preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evidence-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.75);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(2px);
+}
+
+.evidence-details-box {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.evidence-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.evidence-location {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.evidence-time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.evidence-row-data {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 8px;
+}
+
+.evidence-lbl {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.evidence-val {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.evidence-btn-view {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  background: #eaf0eb;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.evidence-btn-view:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Camera Health Section */
+.camera-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.camera-health-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s ease;
+}
+
+.camera-health-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+  border-color: #cbd5e1;
+}
+
+.camera-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.camera-card-id {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.camera-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.camera-status-indicator.online { color: var(--low); }
+.camera-status-indicator.warning { color: var(--high); }
+.camera-status-indicator.incident { color: var(--critical); }
+.camera-status-indicator.offline { color: #94a3b8; }
+
+.camera-status-indicator svg {
+  font-size: 14px;
+}
+
+.camera-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: -4px;
+}
+
+.camera-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.camera-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.camera-progress-bar-wrapper {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.camera-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.camera-progress-fill.green { background-color: var(--low); }
+.camera-progress-fill.amber { background-color: var(--high); }
+.camera-progress-fill.red { background-color: var(--critical); }
+.camera-progress-fill.grey { background-color: #94a3b8; }
+
+.camera-meta-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+  border-top: 1px solid #f1f5f9;
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.camera-heartbeat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.camera-model-tag {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}

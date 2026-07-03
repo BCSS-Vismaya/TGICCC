@@ -1,0 +1,251 @@
+/* System Status Dashboard Styling */
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Operational Header Badge */
+.status-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.status-header-info {
+  flex: 1;
+}
+
+.status-header-info .module-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.status-header-info h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+
+.status-header-info p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.status-badge-operational {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+
+.status-badge-operational .badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--low);
+  box-shadow: 0 0 8px var(--low);
+  animation: statusPulse 2s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* 6-Column Telemetry Stat Panels */
+.status-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.status-telemetry-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 18px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+  min-height: 110px;
+}
+
+.status-telemetry-card span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.status-telemetry-card h2 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.status-telemetry-card.green h2 {
+  color: var(--low);
+}
+
+.status-telemetry-card.red h2 {
+  color: var(--critical);
+}
+
+.status-telemetry-card.black h2 {
+  color: var(--text-primary);
+}
+
+/* Main Cards */
+.status-panel-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.status-panel-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
+
+/* Camera Health Data Table */
+.status-table-container {
+  overflow-x: auto;
+}
+
+.status-health-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.status-health-table th {
+  padding: 14px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #f1f5f9;
+  background: #f8fafc;
+}
+
+.status-health-table td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.status-health-table tr:hover td {
+  background: #f8fafc;
+}
+
+.camera-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.camera-cell svg {
+  font-size: 15px;
+  color: var(--primary);
+}
+
+.camera-cell.offline-node {
+  color: #94a3b8;
+}
+
+.camera-cell.offline-node svg {
+  color: #94a3b8;
+}
+
+/* Table Health Progress Indicator */
+.table-health-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 260px;
+}
+
+.table-health-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.table-health-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.table-health-bar-fill.green { background-color: var(--low); }
+.table-health-bar-fill.amber { background-color: var(--high); }
+.table-health-bar-fill.red { background-color: var(--critical); }
+.table-health-bar-fill.grey { background-color: #94a3b8; }
+
+.table-health-percent {
+  font-size: 13px;
+  font-weight: 700;
+  width: 40px;
+  text-align: right;
+  color: var(--text-primary);
+}
+
+.table-health-percent.grey {
+  color: #94a3b8;
+}
+
+/* Connectivity Badges */
+.connectivity-tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: var(--text-primary);
+}
+
+.connectivity-tag.fiveg {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.connectivity-tag.fiber {
+  background: #fae8ff;
+  color: #a21caf;
+}

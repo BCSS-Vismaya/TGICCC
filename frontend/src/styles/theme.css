@@ -1,0 +1,366 @@
+:root {
+  /* Light Theme Variables */
+  --primary: #4F7359;
+  --bg-primary: #F4F6F7;
+  --bg-sidebar: #23404A;
+  --bg-nav-hover: #304852;
+  --selected-nav: #4A7380;
+  --surface: #FFFFFF;
+  --border: #D8DDD7;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+
+  --critical: #DC2626;
+  --high: #F59E0B;
+  --medium: #2563EB;
+  --low: #16A34A;
+
+  --sidebar-width: 306px;
+  --header-height: 72px;
+
+  --transition-speed: 250ms;
+}
+
+/* Dark Theme Variables - Sleek Command Center aesthetics */
+.dark-theme {
+  --bg-primary: #090d16;       /* Deep space rich dark background */
+  --bg-sidebar: #0b111e;       /* Sleek deep slate-navy sidebar */
+  --bg-nav-hover: #1e293b;     /* Modern hover background */
+  --selected-nav: #4F7359;     /* Core brand green */
+  --surface: #111a2e;          /* Rich navy surfaces for cards and panels */
+  --border: #1e2c45;           /* Clean dark borders */
+  --text-primary: #f8fafc;     /* Clean off-white primary text */
+  --text-secondary: #94a3b8;   /* Soft slate secondary text */
+
+  --critical: #ef4444;         /* High-contrast Critical Red */
+  --high: #f59e0b;             /* Glowing Amber Warning */
+  --medium: #3b82f6;           /* Electric Info Blue */
+  --low: #10b981;              /* Success Emerald Green */
+}
+
+/* Smooth Transitions for Theme Swapping (Surgical list instead of wildcard) */
+body,
+.sidebar,
+.top-navbar,
+.page-content,
+.card,
+.anomaly-panel-card,
+.camera-health-card,
+.detection-card,
+.evidence-card,
+.status-telemetry-card,
+.status-panel-card,
+.settings-panel-card,
+.notifications-panel-card,
+.frs-search-wrapper,
+.frs-match-item,
+.frs-btn-outline,
+.btn-secondary,
+.operator-card,
+.nav-icon-btn,
+.menu-item,
+.submenu-item,
+.btn-sidebar-action,
+input,
+select,
+textarea,
+button {
+  transition: background-color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+}
+
+/* Layout & Component Overrides for Dark Theme compatibility */
+
+/* Top Navigation Bar */
+.dark-theme .top-navbar {
+  background: var(--surface) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+.dark-theme .top-navbar .navbar-title {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .top-navbar .navbar-title-small {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .nav-icon-btn {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .nav-icon-btn:hover {
+  background: var(--bg-primary) !important;
+}
+
+.dark-theme .operator-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .operator-id {
+  color: var(--text-secondary) !important;
+}
+
+/* Sidebar Menu Overrides */
+.dark-theme .menu-item {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .menu-item:hover,
+.dark-theme .submenu-item:hover {
+  background: var(--bg-nav-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .menu-item.active,
+.dark-theme .submenu-item.active {
+  background: var(--selected-nav) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Cards & Panel Layouts */
+.dark-theme .card,
+.dark-theme .anomaly-panel-card,
+.dark-theme .status-panel-card,
+.dark-theme .settings-panel-card,
+.dark-theme .notifications-panel-card,
+.dark-theme .frs-search-wrapper,
+.dark-theme .assistant-chat-panel,
+.dark-theme .login-card,
+.dark-theme .settings-card,
+.dark-theme .notification-list-card,
+.dark-theme .status-badge-operational {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+.dark-theme .anomaly-stat-panel,
+.dark-theme .status-telemetry-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .anomaly-control-bar {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.dark-theme .detection-card,
+.dark-theme .evidence-card,
+.dark-theme .frs-match-item,
+.dark-theme .camera-health-card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Tables */
+.dark-theme table,
+.dark-theme th,
+.dark-theme td,
+.dark-theme .status-health-table {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme th {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--text-secondary) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+.dark-theme tr {
+  border-bottom-color: var(--border) !important;
+}
+
+.dark-theme tr:hover td {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Inputs & Form Controls */
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea,
+.dark-theme .frs-search-input-container,
+.dark-theme .anomaly-search-input,
+.dark-theme .date-picker-input,
+.dark-theme .settings-input {
+  background: var(--bg-primary) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme input:focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus,
+.dark-theme .frs-search-input-container:focus-within,
+.dark-theme .anomaly-search-input:focus-within {
+  border-color: var(--primary) !important;
+  background: var(--surface) !important;
+}
+
+/* Buttons */
+.dark-theme .btn-secondary,
+.dark-theme .frs-btn-outline,
+.dark-theme .frs-filter-chip {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .btn-secondary:hover,
+.dark-theme .frs-btn-outline:hover,
+.dark-theme .frs-filter-chip:hover {
+  background: var(--bg-primary) !important;
+}
+
+/* Alerts & Badges - High contrast / Readable in dark theme */
+.dark-theme .badge-green,
+.dark-theme .status-chip.low,
+.dark-theme .status-chip.in-progress,
+.dark-theme .detection-severity-tag.low,
+.dark-theme .notification-badge.info {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark-theme .badge-red,
+.dark-theme .status-chip.critical,
+.dark-theme .status-chip.new,
+.dark-theme .detection-severity-tag.critical {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.dark-theme .badge-yellow,
+.dark-theme .status-chip.high,
+.dark-theme .status-chip.pending,
+.dark-theme .detection-severity-tag.high {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.dark-theme .badge-blue,
+.dark-theme .status-chip.medium,
+.dark-theme .status-chip.acknowledged,
+.dark-theme .detection-severity-tag.medium {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Leaflet Map Controls in Dark Theme */
+.dark-theme .leaflet-bar a {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+.dark-theme .leaflet-bar a:hover {
+  background-color: var(--bg-primary) !important;
+}
+
+.dark-theme .leaflet-popup-content-wrapper,
+.dark-theme .leaflet-popup-tip {
+  background: var(--surface) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Specific text color settings (NO generic 'span' override to preserve colors) */
+.dark-theme .operator-name,
+.dark-theme .operator-title,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme p,
+.dark-theme label,
+.dark-theme .text-muted,
+.dark-theme .section-title p,
+.dark-theme .stat-card p,
+.dark-theme .detail-row {
+  color: var(--text-secondary) !important;
+}
+
+/* Dashboard & FRS Custom Overrides for Dark Theme */
+.dark-theme .dashboard-toolbar,
+.dark-theme .frs-profile-card,
+.dark-theme .frs-section-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+.dark-theme .toolbar-search,
+.dark-theme .ops-summary-strip {
+  background: var(--bg-primary) !important;
+  border-color: var(--border) !important;
+}
+
+.dark-theme .ops-summary-item strong {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .frs-match-item.active {
+  background: rgba(79, 115, 89, 0.25) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 4px 12px rgba(79, 115, 89, 0.2) !important;
+}
+
+.dark-theme .frs-match-photo-container,
+.dark-theme .frs-profile-image-container {
+  border-color: var(--border) !important;
+}
+
+.dark-theme .frs-badge.confidence {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .frs-timeline::before {
+  background: var(--border) !important;
+}
+
+.dark-theme .frs-timeline-item {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: var(--border) !important;
+}
+
+.dark-theme .frs-timeline-item:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.dark-theme .frs-timeline-dot {
+  border-color: var(--surface) !important;
+}
+
+.dark-theme .frs-timeline-header,
+.dark-theme .frs-profile-info-grid {
+  border-color: var(--border) !important;
+  border-top-color: var(--border) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+/* Leaflet Map Dark Theme Filter */
+.dark-theme .leaflet-container {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) !important;
+}

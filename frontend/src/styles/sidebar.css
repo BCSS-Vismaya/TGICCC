@@ -1,0 +1,201 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  padding: 24px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #4F7359;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.sidebar-logo h2 {
+  color: white;
+  font-size: 24px;
+}
+
+.sidebar-logo p {
+  color: #bfc7ca;
+  font-size: 13px;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 20px 14px;
+  overflow-y: auto;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  color: #d7dce0;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: .25s;
+}
+
+.menu-item:hover {
+  background: #304852;
+}
+
+.menu-item.active {
+  background: #4F7359;
+  color: white;
+}
+
+.sidebar-footer {
+  padding: 18px;
+  color: #9fb1b7;
+  font-size: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.menu-arrow{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+}
+
+.submenu{
+    margin-left:18px;
+    margin-bottom:10px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.submenu-item{
+    display:flex;
+    align-items:center;
+    padding:10px 14px;
+    border-radius:10px;
+    color:#C7D0D5;
+    font-size:14px;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.submenu-item:hover{
+    background:#304852;
+    color:white;
+}
+
+.submenu-item.active{
+    background:#4F7359;
+    color:white;
+}
+
+.sidebar-menu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.submenu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Sidebar Operator Section */
+.sidebar-operator-section {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.operator-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.operator-avatar-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.operator-badge-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.operator-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.operator-badge-id {
+  font-size: 11px;
+  color: #C7D0D5;
+}
+
+.operator-actions-row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-sidebar-action {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px;
+  color: #C7D0D5;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-sidebar-action:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+}

@@ -1,0 +1,210 @@
+/* Settings Page Stylesheet */
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Tab Navigation Bar */
+.settings-tab-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.settings-tab {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.settings-tab:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.settings-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(79, 115, 89, 0.15);
+}
+
+/* User Role Badges */
+.role-badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.role-badge.administrator {
+  background: #fdecec;
+  color: #c0392b;
+  border-color: rgba(192, 57, 43, 0.2);
+}
+
+.role-badge.supervisor {
+  background: #fff6e4;
+  color: #d68910;
+  border-color: rgba(214, 137, 16, 0.2);
+}
+
+.role-badge.operator {
+  background: #ebf4ff;
+  color: #2e6ebe;
+  border-color: rgba(46, 110, 190, 0.2);
+}
+
+.role-badge.read-only {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+
+/* Selected User Row */
+.clickable-tr {
+  cursor: pointer;
+}
+
+.clickable-tr.selected-user td {
+  background-color: #eaf0eb;
+  border-bottom-color: var(--primary);
+}
+
+/* Permissions Panel Box */
+.permissions-section {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+  margin-top: 12px;
+}
+
+.permissions-section h4 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.permissions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.permission-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.permission-pill:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.permission-pill.checked {
+  background: #eaf7ee;
+  color: #2e8b57;
+  border-color: rgba(46, 139, 87, 0.3);
+}
+
+.permission-pill svg {
+  font-size: 16px;
+}
+
+/* Theme Selection Cards */
+.theme-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 280px);
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.theme-card {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.theme-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+}
+
+.theme-card.active {
+  border-color: var(--primary);
+  background: #f9fbf9;
+  box-shadow: 0 4px 12px rgba(79, 115, 89, 0.08);
+}
+
+.theme-card-icon {
+  font-size: 36px;
+  color: var(--text-secondary);
+}
+
+.theme-card.active .theme-card-icon {
+  color: var(--primary);
+}
+
+.theme-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Profile Form Layout */
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  margin-top: 12px;
+}
+
+/* Audit logs table highlights */
+.audit-status-tag {
+  font-weight: 700;
+}
+.audit-status-tag.success { color: var(--low); }
+.audit-status-tag.denied { color: var(--critical); }
+
+/* System Config input limits */
+.config-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  margin-top: 12px;
+}
