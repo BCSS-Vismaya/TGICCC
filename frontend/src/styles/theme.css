@@ -1,41 +1,41 @@
 :root {
-  /* Light Theme Variables */
+  /* Light Theme Variables - Soft, premium, warm gray/slate tone */
   --primary: #4F7359;
-  --bg-primary: #F4F6F7;
-  --bg-sidebar: #23404A;
-  --bg-nav-hover: #304852;
-  --selected-nav: #4A7380;
-  --surface: #FFFFFF;
-  --border: #D8DDD7;
-  --text-primary: #1E293B;
-  --text-secondary: #64748B;
+  --bg-primary: #FAF9F6;       /* Extremely subtle warm gray background */
+  --bg-sidebar: #1C2421;       /* Premium deep forest-charcoal sidebar (no blue) */
+  --bg-nav-hover: #2A3632;     /* Muted sage-charcoal hover */
+  --selected-nav: #4F7359;     /* Brand primary active state */
+  --surface: #FFFFFF;          /* Pure white card surface */
+  --border: #E2E8F0;           /* Soft light grey border */
+  --text-primary: #0F172A;     /* Rich deep slate primary text */
+  --text-secondary: #475569;   /* Readable secondary slate text */
 
   --critical: #DC2626;
-  --high: #F59E0B;
+  --high: #D97706;             /* Muted warning amber */
   --medium: #2563EB;
   --low: #16A34A;
 
   --sidebar-width: 306px;
   --header-height: 72px;
 
-  --transition-speed: 250ms;
+  --transition-speed: 200ms;
 }
 
-/* Dark Theme Variables - Sleek Command Center aesthetics */
+/* Dark Theme Variables - Palantir/Stripe style premium dark */
 .dark-theme {
-  --bg-primary: #090d16;       /* Deep space rich dark background */
-  --bg-sidebar: #0b111e;       /* Sleek deep slate-navy sidebar */
-  --bg-nav-hover: #1e293b;     /* Modern hover background */
-  --selected-nav: #4F7359;     /* Core brand green */
-  --surface: #111a2e;          /* Rich navy surfaces for cards and panels */
-  --border: #1e2c45;           /* Clean dark borders */
-  --text-primary: #f8fafc;     /* Clean off-white primary text */
-  --text-secondary: #94a3b8;   /* Soft slate secondary text */
+  --bg-primary: #0B0F19;       /* Soft dark navy background */
+  --bg-sidebar: #111614;       /* Deepest forest-charcoal sidebar (no blue) */
+  --bg-nav-hover: #1A221E;     /* Sleek dark forest-charcoal hover */
+  --selected-nav: #4F7359;     /* Brand primary green */
+  --surface: #162032;          /* Deep slate-blue card surfaces */
+  --border: #243048;           /* Thinner, muted gray-blue border */
+  --text-primary: #F9FAFB;     /* High-contrast off-white */
+  --text-secondary: #9CA3AF;   /* Muted gray secondary text */
 
-  --critical: #ef4444;         /* High-contrast Critical Red */
-  --high: #f59e0b;             /* Glowing Amber Warning */
-  --medium: #3b82f6;           /* Electric Info Blue */
-  --low: #10b981;              /* Success Emerald Green */
+  --critical: #EF4444;
+  --high: #F59E0B;
+  --medium: #3B82F6;
+  --low: #10B981;
 }
 
 /* Smooth Transitions for Theme Swapping (Surgical list instead of wildcard) */
@@ -110,6 +110,7 @@ button {
 /* Sidebar Menu Overrides */
 .dark-theme .menu-item {
   color: var(--text-secondary) !important;
+  transition: all 0.2s ease !important;
 }
 
 .dark-theme .menu-item:hover,
@@ -120,8 +121,9 @@ button {
 
 .dark-theme .menu-item.active,
 .dark-theme .submenu-item.active {
-  background: var(--selected-nav) !important;
-  color: var(--text-primary) !important;
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(79, 115, 89, 0.25) !important;
 }
 
 /* Cards & Panel Layouts */
@@ -139,28 +141,102 @@ button {
   background: var(--surface) !important;
   border-color: var(--border) !important;
   color: var(--text-primary) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 16px !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              border-color 0.25s ease !important;
+}
+
+.dark-theme .card:hover,
+.dark-theme .anomaly-panel-card:hover,
+.dark-theme .status-panel-card:hover,
+.dark-theme .settings-panel-card:hover,
+.dark-theme .notifications-panel-card:hover,
+.dark-theme .frs-search-wrapper:hover,
+.dark-theme .assistant-chat-panel:hover,
+.dark-theme .login-card:hover,
+.dark-theme .settings-card:hover,
+.dark-theme .notification-list-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(79, 115, 89, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 12px 24px rgba(0, 0, 0, 0.25) !important;
 }
 
 .dark-theme .anomaly-stat-panel,
 .dark-theme .status-telemetry-card {
   background: var(--surface) !important;
   border-color: var(--border) !important;
-  color: var(--text-primary) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 14px !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              border-color 0.25s ease !important;
+}
+
+.dark-theme .status-telemetry-card:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-color: rgba(79, 115, 89, 0.3) !important;
 }
 
 .dark-theme .anomaly-control-bar {
   background: var(--surface) !important;
   border-color: var(--border) !important;
+  border-radius: 14px !important;
 }
 
 .dark-theme .detection-card,
 .dark-theme .evidence-card,
 .dark-theme .frs-match-item,
 .dark-theme .camera-health-card {
-  background: rgba(255, 255, 255, 0.02) !important;
+  background: rgba(255, 255, 255, 0.01) !important;
   border-color: var(--border) !important;
   color: var(--text-primary) !important;
+  border-radius: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.dark-theme .detection-card:hover,
+.dark-theme .evidence-card:hover,
+.dark-theme .frs-match-item:hover,
+.dark-theme .camera-health-card:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(79, 115, 89, 0.2) !important;
+}
+
+/* Premium Button Overrides */
+.btn-primary,
+.btn-login-submit,
+.frs-btn-search,
+.btn-sidebar-action {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  padding: 10px 18px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-primary:active,
+.btn-login-submit:active,
+.frs-btn-search:active {
+  transform: scale(0.97) !important;
+}
+
+.dark-theme .btn-primary,
+.dark-theme .btn-login-submit,
+.dark-theme .frs-btn-search {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark-theme .btn-primary:hover,
+.dark-theme .btn-login-submit:hover,
+.dark-theme .frs-btn-search:hover {
+  background: #3e5a45 !important;
+  box-shadow: 0 4px 12px rgba(79, 115, 89, 0.15) !important;
 }
 
 /* Tables */
@@ -207,6 +283,7 @@ button {
 .dark-theme .anomaly-search-input:focus-within {
   border-color: var(--primary) !important;
   background: var(--surface) !important;
+  box-shadow: 0 0 0 3px rgba(79, 115, 89, 0.15) !important;
 }
 
 /* Buttons */

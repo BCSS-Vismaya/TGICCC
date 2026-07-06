@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FiUser, FiLock, FiEye, FiEyeOff, FiShield, FiLock as FiSecureLock } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
+import bcssLogo from "../assets/logos/BcssLogo.png";
+import appLogo from "../assets/logos/AppLogo.png";
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -32,27 +34,11 @@ function Login({ onLogin }) {
       <div className="login-grid-overlay"></div>
 
       <div className="login-card">
-        {/* Telangana Police Logo Shield Header */}
+        {/* Telangana Police Logo Header */}
         <div className="login-header-group">
-          {/* Custom Styled Police Shield Vector Graphic */}
-          <svg className="login-shield-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-            {/* Outer Gold Shield Boundary */}
-            <path d="M50 10 C80 15, 90 35, 90 65 C90 95, 70 110, 50 115 C30 110, 10 95, 10 65 C10 35, 20 15, 50 10 Z" fill="#20353F" stroke="#c29d38" strokeWidth="4" />
-            {/* Inner Shield Fill Grid */}
-            <path d="M50 15 C75 19, 84 37, 84 65 C84 90, 67 104, 50 109 C33 104, 16 90, 16 65 C16 37, 25 19, 50 15 Z" fill="#1b2a32" />
-            {/* State Emblem Ashoka Pillar representation */}
-            <g transform="translate(36, 32) scale(0.6)">
-              {/* Lion Capital Silhouette in Gold */}
-              <path d="M20 10 H28 V24 H20 Z M15 24 H33 V32 H15 Z M20 32 H28 V56 H20 Z" fill="#c29d38" />
-              <circle cx='24' cy='18' r='7' fill='#c29d38'/>
-              <circle cx='15' cy='28' r='5' fill='#c29d38'/>
-              <circle cx='33' cy='28' r='5' fill='#c29d38'/>
-              <rect x='10' y='56' width='28' height='6' fill='#c29d38' rx='2'/>
-            </g>
-            {/* Telangana Text Ribbon */}
-            <path d="M20 90 Q50 98 80 90" fill="none" stroke="#c29d38" strokeWidth="8" strokeLinecap="round" />
-            <text x="50" y="93" fill="#1b2a32" fontSize="6.5" fontWeight="900" textAnchor="middle" letterSpacing="0.2">TELANGANA POLICE</text>
-          </svg>
+          <div className="login-logo-container">
+            <img src={appLogo} alt="TGICCC Logo" className="login-logo-img" />
+          </div>
 
           <div className="login-titles">
             <span>Telangana Police</span>
@@ -129,6 +115,18 @@ function Login({ onLogin }) {
         {/* Secure Disclaimer Footnote */}
         <div className="login-disclaimer">
           <strong>WARNING:</strong> Authorized personnel access only. Unauthorized entry attempts will be logged and prosecuted under the <strong>Information Technology (IT) Act</strong>.
+        </div>
+
+        {/* Powered by Branding inside the Login Card */}
+        <div className="login-powered-by">
+          <span className="login-powered-by-label">Powered by</span>
+          <div className="login-powered-by-card">
+            <img 
+              src={bcssLogo} 
+              alt="Blue Cloud Softech Solutions" 
+              className="login-powered-by-logo" 
+            />
+          </div>
         </div>
       </div>
     </div>

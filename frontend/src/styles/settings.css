@@ -20,7 +20,7 @@
   padding: 12px 20px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: white;
+  background: var(--surface);
   color: var(--text-primary);
   font-weight: 600;
   font-size: 14px;
@@ -29,8 +29,8 @@
 }
 
 .settings-tab:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--bg-primary);
+  border-color: var(--border);
 }
 
 .settings-tab.active {

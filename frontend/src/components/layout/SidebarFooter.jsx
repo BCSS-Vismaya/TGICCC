@@ -1,8 +1,22 @@
+import bcssLogo from "../../assets/logos/BcssLogo.png";
+
 function SidebarFooter() {
   return (
     <div className="sidebar-footer">
-      <p>Build 2026.02 • v1.0</p>
-      <p>Operational Network</p>
+      <div className="powered-by-section">
+        <span className="powered-by-label">Powered by</span>
+        <div className="powered-by-card">
+          <img 
+            src={bcssLogo} 
+            alt="Blue Cloud Softech Solutions" 
+            className="powered-by-logo" 
+          />
+        </div>
+      </div>
+      <div className="footer-build-info">
+        <span>Build 2026.02 • v1.0</span>
+        <span>Operational Network</span>
+      </div>
     </div>
   );
 }

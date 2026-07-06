@@ -36,7 +36,7 @@ function IncidentCard({ incident }) {
   };
 
   return (
-    <Card className="incident-card">
+    <Card className={`incident-card severity-${incident.severity.toLowerCase()}`}>
       {/* Header ID and Severity Badge */}
       <div className="incident-header">
         <span className="incident-id">{incident.id}</span>

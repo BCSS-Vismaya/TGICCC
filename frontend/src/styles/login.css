@@ -58,10 +58,24 @@
   gap: 12px;
 }
 
-.login-shield-svg {
-  width: 72px;
-  height: 84px;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+.login-logo-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  background: #090d16;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  margin-bottom: 8px;
+}
+
+.login-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .login-titles {
@@ -265,3 +279,56 @@
 .login-disclaimer strong {
   color: #64748b;
 }
+
+/* Powered by branding inside the login card */
+.login-powered-by {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.login-powered-by-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #94a3b8;
+}
+
+.login-powered-by-card {
+  background: transparent;
+  border-radius: 0;
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-powered-by-logo {
+  height: auto;
+  max-height: 56px;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  filter: invert(1);
+}
+
+.login-powered-by-logo:hover {
+  opacity: 1;
+}
+
+/* In dark mode, cancel the inversion so it remains white on the dark card background */
+.dark-theme .login-powered-by-logo {
+  filter: none;
+}
+
+

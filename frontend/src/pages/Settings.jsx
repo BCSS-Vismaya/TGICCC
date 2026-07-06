@@ -14,6 +14,7 @@ import {
   FiX
 } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
+import incidents from "../data/incidents";
 
 // Seeded mock users list
 const initialUsers = [
@@ -306,60 +307,128 @@ function Settings() {
         </div>
       )}
 
-      {/* Tab 3 — Notification Preferences */}
+      {/* Tab 3 — Notification Preferences & Active Feed */}
       {activeTab === "Notifications" && (
-        <div className="status-panel-card">
-          <h3>System Notification Preferences</h3>
-          <p style={{ color: "var(--text-secondary)", fontSize: "14px", marginBottom: "12px" }}>
-            Choose which delivery targets dispatch alert summaries to your local console session.
-          </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          
+          {/* Notifications Feed */}
+          <div className="status-panel-card">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
+              <div>
+                <h3 style={{ margin: 0 }}>Recent Dispatched Notifications</h3>
+                <p style={{ color: "var(--text-secondary)", fontSize: "14px", marginTop: "4px", marginBottom: 0 }}>
+                  Real-time operational alerts logged by the TGICCC dispatch system.
+                </p>
+              </div>
+              <span className="live-badge" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <span className="live-dot" style={{ display: "inline-block" }}></span> LIVE ALERTS
+              </span>
+            </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "400px" }}>
-            <label className="form-checkbox-item">
-              <input 
-                type="checkbox"
-                checked={notifPreferences.email}
-                onChange={(e) => setNotifPreferences({ ...notifPreferences, email: e.target.checked })}
-              />
-              <span>Enable Email Alert Dispatching</span>
-            </label>
-            
-            <label className="form-checkbox-item">
-              <input 
-                type="checkbox"
-                checked={notifPreferences.sms}
-                onChange={(e) => setNotifPreferences({ ...notifPreferences, sms: e.target.checked })}
-              />
-              <span>Enable SMS Text Alerts</span>
-            </label>
-
-            <label className="form-checkbox-item">
-              <input 
-                type="checkbox"
-                checked={notifPreferences.alarm}
-                onChange={(e) => setNotifPreferences({ ...notifPreferences, alarm: e.target.checked })}
-              />
-              <span>Trigger Audio Alarms on Critical Anomalies</span>
-            </label>
-
-            <label className="form-checkbox-item">
-              <input 
-                type="checkbox"
-                checked={notifPreferences.dashboard}
-                onChange={(e) => setNotifPreferences({ ...notifPreferences, dashboard: e.target.checked })}
-              />
-              <span>Display Desktop Dashboard Alerts</span>
-            </label>
-
-            <button 
-              type="button" 
-              className="frs-btn-search"
-              style={{ width: "fit-content", marginTop: "12px" }}
-              onClick={handleNotifPreferencesSave}
-            >
-              Update Preferences
-            </button>
+            <div className="notifications-list" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              {incidents.slice(0, 5).map((notif) => (
+                <div 
+                  key={notif.id} 
+                  style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "space-between",
+                    padding: "14px 18px", 
+                    borderRadius: "10px", 
+                    border: "1px solid var(--border)", 
+                    background: "rgba(255, 255, 255, 0.01)"
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                    <span 
+                      style={{ 
+                        width: "8px", 
+                        height: "8px", 
+                        borderRadius: "50%", 
+                        background: notif.severity === "Critical" ? "var(--critical)" : 
+                                    notif.severity === "High" ? "var(--high)" : 
+                                    notif.severity === "Medium" ? "var(--medium)" : "var(--low)",
+                        boxShadow: `0 0 8px ${notif.severity === "Critical" ? "var(--critical)" : 
+                                    notif.severity === "High" ? "var(--high)" : 
+                                    notif.severity === "Medium" ? "var(--medium)" : "var(--low)"}`
+                      }}
+                    ></span>
+                    <div>
+                      <div style={{ fontWeight: "700", fontSize: "14px", color: "var(--text-primary)" }}>{notif.title}</div>
+                      <div style={{ color: "var(--text-secondary)", fontSize: "12px", marginTop: "2px" }}>
+                        {notif.location} &bull; {notif.camera}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                    <span style={{ fontSize: "12px", color: "var(--text-secondary)" }}>{notif.time}</span>
+                    <span 
+                      className={`status-chip ${notif.status.toLowerCase().replace(/\s+/g, "-")}`}
+                      style={{ fontSize: "11px", padding: "4px 10px" }}
+                    >
+                      {notif.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Preferences */}
+          <div className="status-panel-card">
+            <h3 style={{ margin: 0 }}>System Notification Preferences</h3>
+            <p style={{ color: "var(--text-secondary)", fontSize: "14px", marginTop: "4px", marginBottom: "16px" }}>
+              Choose which delivery targets dispatch alert summaries to your local console session.
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "400px" }}>
+              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+                <input 
+                  type="checkbox"
+                  checked={notifPreferences.email}
+                  onChange={(e) => setNotifPreferences({ ...notifPreferences, email: e.target.checked })}
+                />
+                <span style={{ color: "var(--text-primary)" }}>Enable Email Alert Dispatching</span>
+              </label>
+              
+              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+                <input 
+                  type="checkbox"
+                  checked={notifPreferences.sms}
+                  onChange={(e) => setNotifPreferences({ ...notifPreferences, sms: e.target.checked })}
+                />
+                <span style={{ color: "var(--text-primary)" }}>Enable SMS Text Alerts</span>
+              </label>
+
+              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+                <input 
+                  type="checkbox"
+                  checked={notifPreferences.alarm}
+                  onChange={(e) => setNotifPreferences({ ...notifPreferences, alarm: e.target.checked })}
+                />
+                <span style={{ color: "var(--text-primary)" }}>Trigger Audio Alarms on Critical Anomalies</span>
+              </label>
+
+              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+                <input 
+                  type="checkbox"
+                  checked={notifPreferences.dashboard}
+                  onChange={(e) => setNotifPreferences({ ...notifPreferences, dashboard: e.target.checked })}
+                />
+                <span style={{ color: "var(--text-primary)" }}>Display Desktop Dashboard Alerts</span>
+              </label>
+
+              <button 
+                type="button" 
+                className="frs-btn-search"
+                style={{ width: "fit-content", marginTop: "12px", padding: "10px 18px" }}
+                onClick={handleNotifPrefsSave}
+              >
+                Update Preferences
+              </button>
+            </div>
+          </div>
+          
         </div>
       )}
 

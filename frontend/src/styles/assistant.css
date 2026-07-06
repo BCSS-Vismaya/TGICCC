@@ -44,7 +44,7 @@
 
 /* Left Column - Chat Box */
 .chat-window {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
   display: flex;
@@ -98,8 +98,8 @@
 }
 
 .chat-message.user .chat-avatar {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
+  background: var(--bg-nav-hover);
+  border: 1px solid var(--border);
   color: var(--text-primary);
   font-size: 18px;
 }
@@ -113,7 +113,7 @@
 }
 
 .chat-message.bot .chat-bubble {
-  background: #f1f5f9;
+  background: var(--bg-nav-hover);
   color: var(--text-primary);
   border-top-left-radius: 2px;
 }
@@ -190,7 +190,7 @@
 .chat-input-bar {
   padding: 16px 24px;
   border-top: 1px solid var(--border);
-  background: #f8fafc;
+  background: var(--bg-primary);
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
   display: flex;
@@ -202,7 +202,7 @@
   flex: 1;
   display: flex;
   align-items: center;
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px 16px;
@@ -249,7 +249,7 @@
 }
 
 .prompt-suggestions-card {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 24px;
@@ -276,7 +276,7 @@
 
 .suggestion-btn {
   text-align: left;
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px 16px;
@@ -289,13 +289,13 @@
 }
 
 .suggestion-btn:hover {
-  background: #f8fafc;
+  background: var(--bg-nav-hover);
   border-color: var(--primary);
   color: var(--primary);
 }
 
 .assistant-note-card {
-  background: #f8fafc;
+  background: var(--bg-primary);
   border: 1px dashed var(--border);
   border-radius: 14px;
   padding: 16px;

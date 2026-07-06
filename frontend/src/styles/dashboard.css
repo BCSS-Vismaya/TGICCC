@@ -242,22 +242,55 @@
 }
 
 .incident-card {
-  padding: 18px 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 290px;
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .incident-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04), 0 12px 24px rgba(15, 23, 42, 0.08);
+  border-color: rgba(79, 115, 89, 0.3);
 }
+
+.incident-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: transparent;
+  z-index: 2;
+}
+
+.incident-card.severity-critical::before {
+  background: var(--critical);
+}
+
+.incident-card.severity-high::before {
+  background: var(--high);
+}
+
+.incident-card.severity-medium::before {
+  background: var(--medium);
+}
+
+.incident-card.severity-low::before {
+  background: var(--low);
+}
+
 
 .incident-header {
   display: flex;
@@ -309,7 +342,7 @@
   align-items: center;
   margin-top: auto;
   padding-top: 14px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--border);
 }
 
 .incident-footer button {
