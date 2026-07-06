@@ -84,17 +84,17 @@
 }
 
 .sidebar-footer {
-  padding: 20px 24px 24px 24px;
+  padding: 12px 20px 16px 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .powered-by-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .powered-by-label {
@@ -109,7 +109,7 @@
 .powered-by-card {
   background: transparent;
   border-radius: 0;
-  padding: 8px 0;
+  padding: 4px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +120,7 @@
 .powered-by-logo {
   max-width: 100%;
   height: auto;
-  max-height: 56px;
+  max-height: 64px;
   object-fit: contain;
   display: block;
   opacity: 0.75;
@@ -135,9 +135,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11px;
+  font-size: 10px;
   color: #6d8086;
-  margin-top: 2px;
+  margin-top: 0px;
 }
 
 .menu-arrow{

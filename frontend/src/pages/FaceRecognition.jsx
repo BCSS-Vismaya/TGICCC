@@ -125,9 +125,6 @@ function FaceRecognition() {
       <div className="frs-meta-header">
         <span className="category-title">Face Recognition System (FRS)</span>
         <h1>Unified Police Intelligence Search</h1>
-        <p>
-          Search by name, vehicle, face ID, or case number. Pull citizen profile, violation timeline, sighted-camera map, and AI-attached evidence.
-        </p>
       </div>
 
       {/* Unified Intelligent Search Bar */}
@@ -292,6 +289,7 @@ function FaceRecognition() {
                   <MapContainer 
                     center={mapCenter} 
                     zoom={12} 
+                    scrollWheelZoom={false}
                     style={{ height: "100%", width: "100%" }}
                   >
                     <TileLayer

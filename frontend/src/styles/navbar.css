@@ -23,8 +23,9 @@
 }
 
 .navbar-title {
+  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', sans-serif;
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }

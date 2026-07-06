@@ -186,13 +186,12 @@ function Settings() {
         <div className="status-header-info">
           <span className="module-tag">Configuration</span>
           <h1>Settings</h1>
-          <p>Manage users, theme, notifications, audit logs, and system configuration for TGICCC.</p>
         </div>
       </div>
 
       {/* Tab Navigation row */}
       <div className="settings-tab-bar">
-        {["User Management", "Theme", "Notifications", "Profile", "Audit Logs", "System Config"].map((tab) => (
+        {["User Management", "Notifications", "Profile", "Audit Logs", "System Config", "Theme"].map((tab) => (
           <button
             key={tab}
             type="button"

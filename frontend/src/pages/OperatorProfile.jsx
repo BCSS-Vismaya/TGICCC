@@ -56,7 +56,6 @@ function OperatorProfile({ onLogout }) {
       <div className="profile-header-row">
         <span className="profile-category">Identity & Security</span>
         <h1>Operator Profile</h1>
-        <p>Review credentials, active shift schedules, telemetry activity logs, and account configuration parameters.</p>
       </div>
 
       <div className="profile-grid">

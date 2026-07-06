@@ -19,6 +19,18 @@
   --header-height: 72px;
 
   --transition-speed: 200ms;
+
+  /* AI Assistant Chat Bubbles */
+  --chat-bubble-bot: #F5F2EB;          /* Premium warm cream beige */
+  --chat-bubble-bot-text: #0F172A;     /* Rich deep slate */
+  --chat-bubble-user: #EADBC8;         /* Soft light beige */
+  --chat-bubble-user-text: #0F172A;    /* Rich deep slate */
+
+  /* AI Assistant Chat Avatars */
+  --chat-avatar-bot-bg: #E8EFEA;       /* Sage/light green-gray */
+  --chat-avatar-bot-fg: #4F7359;       /* Primary brand green */
+  --chat-avatar-user-bg: #EAE4DA;      /* Light warm sand */
+  --chat-avatar-user-fg: #475569;      /* Slate-600 */
 }
 
 /* Dark Theme Variables - Palantir/Stripe style premium dark */
@@ -36,6 +48,18 @@
   --high: #F59E0B;
   --medium: #3B82F6;
   --low: #10B981;
+
+  /* AI Assistant Chat Bubbles */
+  --chat-bubble-bot: #1F2937;          /* Sleek dark gray */
+  --chat-bubble-bot-text: #F9FAFB;     /* High-contrast off-white */
+  --chat-bubble-user: #2C3545;         /* Slightly lighter slate-blue/gray */
+  --chat-bubble-user-text: #F9FAFB;    /* Off-white */
+
+  /* AI Assistant Chat Avatars */
+  --chat-avatar-bot-bg: #2C3545;       /* Dark slate-blue/gray */
+  --chat-avatar-bot-fg: #10B981;       /* Active green */
+  --chat-avatar-user-bg: #1F2937;      /* Dark slate-gray */
+  --chat-avatar-user-fg: #9CA3AF;      /* Muted gray */
 }
 
 /* Smooth Transitions for Theme Swapping (Surgical list instead of wildcard) */

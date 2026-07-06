@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { FiUser, FiLock, FiEye, FiEyeOff, FiShield, FiLock as FiSecureLock } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import bcssLogo from "../assets/logos/BcssLogo.png";
-import appLogo from "../assets/logos/AppLogo.png";
+import Logo from "../components/common/Logo";
 
 function Login({ onLogin }) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +23,7 @@ function Login({ onLogin }) {
     toast.success("Security token verified. Access granted.");
     setTimeout(() => {
       onLogin();
+      navigate("/");
     }, 800);
   };
 
@@ -37,7 +40,7 @@ function Login({ onLogin }) {
         {/* Telangana Police Logo Header */}
         <div className="login-header-group">
           <div className="login-logo-container">
-            <img src={appLogo} alt="TGICCC Logo" className="login-logo-img" />
+            <Logo size={60} />
           </div>
 
           <div className="login-titles">

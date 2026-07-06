@@ -235,7 +235,6 @@ function NotificationConfig() {
         <div className="notify-header-info" style={{ width: "100%" }}>
           <span className="module-tag">Administration</span>
           <h1 style={{ marginTop: "4px" }}>Notification Configuration</h1>
-          <p style={{ marginTop: "6px" }}>Configure automated dispatch channels, triggers, and notification recipient matrix.</p>
         </div>
       </div>
 

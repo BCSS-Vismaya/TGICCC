@@ -92,15 +92,15 @@
 }
 
 .chat-message.bot .chat-avatar {
-  background: var(--primary);
-  color: white;
+  background: var(--chat-avatar-bot-bg);
+  color: var(--chat-avatar-bot-fg);
   font-size: 20px;
 }
 
 .chat-message.user .chat-avatar {
-  background: var(--bg-nav-hover);
+  background: var(--chat-avatar-user-bg);
   border: 1px solid var(--border);
-  color: var(--text-primary);
+  color: var(--chat-avatar-user-fg);
   font-size: 18px;
 }
 
@@ -113,14 +113,14 @@
 }
 
 .chat-message.bot .chat-bubble {
-  background: var(--bg-nav-hover);
-  color: var(--text-primary);
+  background: var(--chat-bubble-bot);
+  color: var(--chat-bubble-bot-text);
   border-top-left-radius: 2px;
 }
 
 .chat-message.user .chat-bubble {
-  background: var(--primary-dark, #3D5D49);
-  color: white;
+  background: var(--chat-bubble-user);
+  color: var(--chat-bubble-user-text);
   border-top-right-radius: 2px;
 }
 
@@ -154,6 +154,10 @@
 }
 
 .chat-message.user .chat-bubble a {
+  color: var(--primary);
+}
+
+.dark-theme .chat-message.user .chat-bubble a {
   color: #a7f3d0;
 }
 
@@ -289,7 +293,7 @@
 }
 
 .suggestion-btn:hover {
-  background: var(--bg-nav-hover);
+  background: var(--chat-avatar-bot-bg);
   border-color: var(--primary);
   color: var(--primary);
 }

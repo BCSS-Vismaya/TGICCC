@@ -21,18 +21,8 @@ const badgeColors = {
 function IncidentCard({ incident }) {
   const navigate = useNavigate();
 
-  // Helper to map incident titles to routes
   const handleViewIncident = () => {
-    const routeMap = {
-      "Tree Fall": "/anomalies/tree-fall",
-      "Water Logging": "/anomalies/water-logging",
-      "Road Accident": "/anomalies/road-accident",
-      "Crowd Detection": "/anomalies/crowd-detection",
-      "Running": "/anomalies/running"
-    };
-
-    const targetRoute = routeMap[incident.title] || "/";
-    navigate(targetRoute);
+    navigate(`/alerts/${incident.id}`);
   };
 
   return (

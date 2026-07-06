@@ -345,7 +345,6 @@ I am a specialized assistant trained on TGICCC active logs. I can assist you wit
       <div className="assistant-header-wrapper">
         <span className="module-tag">Operations Intelligence</span>
         <h1>AI Assistant</h1>
-        <p>Conversational intelligence layer over TGICCC. Ask about incidents, anomaly types, areas, cameras, or summaries.</p>
       </div>
 
       {/* Main Workspace grid */}

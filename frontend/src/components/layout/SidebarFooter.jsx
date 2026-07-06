@@ -13,10 +13,6 @@ function SidebarFooter() {
           />
         </div>
       </div>
-      <div className="footer-build-info">
-        <span>Build 2026.02 • v1.0</span>
-        <span>Operational Network</span>
-      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import AppRoutes from "./routes/AppRoutes";
 import Login from "./pages/Login";
 import { ThemeProvider } from "./context/ThemeContext";
 import { SeverityProvider } from "./context/SeverityContext";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -26,6 +27,7 @@ function App() {
     <ThemeProvider>
       <SeverityProvider>
         <BrowserRouter>
+          <ScrollToTop />
           {isAuthenticated ? (
             <MainLayout onLogout={handleLogout}>
               <AppRoutes onLogout={handleLogout} />

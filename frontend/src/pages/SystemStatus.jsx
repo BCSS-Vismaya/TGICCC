@@ -30,13 +30,23 @@ const systemCameras = [
 function SystemStatus() {
   const [cameras] = useState(systemCameras);
 
-  // Health coloring helper for the table health progress bars
-  const getHealthFillColor = (health, status) => {
-    if (status === "Offline") return "grey";
-    if (health >= 80) return "green";
-    if (health >= 50) return "amber";
-    return "red";
+
+
+  const getHealthStatus = (health, status) => {
+    if (status === "Offline" || health === 0) return "Offline";
+    if (health >= 80) return "Online";
+    return "Partially Working";
   };
+
+  const getHealthStatusBadgeClass = (health, status) => {
+    if (status === "Offline" || health === 0) return "badge-red";
+    if (health >= 80) return "badge-green";
+    return "badge-yellow";
+  };
+
+  const onlineCount = cameras.filter(c => c.status !== "Offline" && c.health >= 80).length;
+  const offlineCount = cameras.filter(c => c.status === "Offline" || c.health === 0).length;
+  const partiallyCount = cameras.filter(c => c.status !== "Offline" && c.health > 0 && c.health < 80).length;
 
   return (
     <div className="status-container">
@@ -45,12 +55,6 @@ function SystemStatus() {
         <div className="status-header-info">
           <span className="module-tag">Infrastructure</span>
           <h1>System Status</h1>
-          <p>Operational health of cameras, AI models, network, storage and database backbones.</p>
-        </div>
-        
-        <div className="status-badge-operational">
-          <span className="badge-dot"></span>
-          <span>Operational</span>
         </div>
       </div>
 
@@ -58,33 +62,33 @@ function SystemStatus() {
       <div className="status-telemetry-grid">
         <div className="status-telemetry-card green">
           <span>Cameras Online</span>
-          <h2>20</h2>
+          <h2>{onlineCount}</h2>
         </div>
         <div className="status-telemetry-card red">
           <span>Cameras Offline</span>
-          <h2>2</h2>
+          <h2>{offlineCount}</h2>
         </div>
-        <div className="status-telemetry-card black">
-          <span>AI Models</span>
-          <h2>9</h2>
+        <div className="status-telemetry-card amber">
+          <span>Partially Working</span>
+          <h2>{partiallyCount}</h2>
         </div>
         <div className="status-telemetry-card green">
           <span>Network</span>
-          <h2>Stable</h2>
+          <h2 className="text-value">Stable</h2>
         </div>
         <div className="status-telemetry-card green">
           <span>Database</span>
-          <h2>Healthy</h2>
+          <h2 className="text-value">Healthy</h2>
         </div>
         <div className="status-telemetry-card green">
           <span>Server</span>
-          <h2>Online</h2>
+          <h2 className="text-value">Online</h2>
         </div>
       </div>
 
       {/* Camera Health Table panel */}
       <div className="status-panel-card">
-        <h3>Camera Health</h3>
+        <h3>Camera Status</h3>
         
         <div className="status-table-container">
           <table className="status-health-table">
@@ -92,8 +96,7 @@ function SystemStatus() {
               <tr>
                 <th>Camera</th>
                 <th>Location</th>
-                <th>Health</th>
-                <th>Connectivity</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -108,21 +111,8 @@ function SystemStatus() {
                     {cam.location}
                   </td>
                   <td>
-                    <div className="table-health-wrapper">
-                      <div className="table-health-bar-track">
-                        <div 
-                          className={`table-health-bar-fill ${getHealthFillColor(cam.health, cam.status)}`}
-                          style={{ width: `${cam.health}%` }}
-                        />
-                      </div>
-                      <span className={`table-health-percent ${cam.status === "Offline" ? "grey" : ""}`}>
-                        {cam.health}%
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <span className={`connectivity-tag ${cam.connectivity === "5G" ? "fiveg" : "fiber"}`}>
-                      {cam.connectivity}
+                    <span className={`badge ${getHealthStatusBadgeClass(cam.health, cam.status)}`}>
+                      {getHealthStatus(cam.health, cam.status)}
                     </span>
                   </td>
                 </tr>

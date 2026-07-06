@@ -96,6 +96,9 @@ function AnomalyDetail() {
   const [evidenceDate, setEvidenceDate] = useState("");
   const [evidenceSeverity, setEvidenceSeverity] = useState("All");
 
+  // Evidence Detail Modal State
+  const [selectedEvidence, setSelectedEvidence] = useState(null);
+
   // Reset page filters on route param change
   useEffect(() => {
     setSearchQuery("");
@@ -235,13 +238,20 @@ function AnomalyDetail() {
     setMapZoom(15);
   };
 
-  // Calculate dynamic health bar coloring
-  const getHealthFillColor = (health, status) => {
-    if (status === "Offline") return "grey";
-    if (health >= 80) return "green";
-    if (health >= 50) return "amber";
-    return "red";
+  // Calculate dynamic health status
+  const getHealthStatus = (health, status) => {
+    if (status === "Offline" || health === 0) return "Offline";
+    if (health >= 80) return "Online";
+    return "Partially Working";
   };
+
+  const getHealthStatusBadgeClass = (health, status) => {
+    if (status === "Offline" || health === 0) return "badge-red";
+    if (health >= 80) return "badge-green";
+    return "badge-yellow";
+  };
+
+
 
   return (
     <div className="anomaly-container">
@@ -255,7 +265,6 @@ function AnomalyDetail() {
               {getSeverity(data.title)}
             </span>
           </h1>
-          <p>{data.description}</p>
         </div>
 
         <div className="anomaly-stats-grid">
@@ -287,23 +296,19 @@ function AnomalyDetail() {
               <div key={cam.id} className="camera-health-card">
                 <div className="camera-card-top">
                   <span className="camera-card-id">{cam.id}</span>
-                  <span className={`camera-status-indicator ${cam.status.toLowerCase()}`}>
-                    <FiActivity /> {cam.status === "Incident" ? "Incident" : cam.status}
-                  </span>
+                  {cam.status === "Incident" && (
+                    <span className="camera-status-indicator incident">
+                      <FiActivity /> Incident
+                    </span>
+                  )}
                 </div>
                 <div className="camera-card-name">{cam.name}</div>
                 
-                <div className="camera-progress-container">
-                  <div className="camera-progress-label">
-                    <span>Health</span>
-                    <span>{cam.health}%</span>
-                  </div>
-                  <div className="camera-progress-bar-wrapper">
-                    <div 
-                      className={`camera-progress-fill ${getHealthFillColor(cam.health, cam.status)}`}
-                      style={{ width: `${cam.health}%` }}
-                    />
-                  </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px", marginBottom: "4px" }}>
+                  <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)" }}>Health</span>
+                  <span className={`badge ${getHealthStatusBadgeClass(cam.health, cam.status)}`}>
+                    {getHealthStatus(cam.health, cam.status)}
+                  </span>
                 </div>
 
                 <div className="camera-meta-bottom">
@@ -346,6 +351,7 @@ function AnomalyDetail() {
           <MapContainer
             center={mapCenter}
             zoom={mapZoom}
+            scrollWheelZoom={false}
             style={{ height: "100%", width: "100%" }}
           >
             <TileLayer
@@ -469,19 +475,6 @@ function AnomalyDetail() {
                 onChange={(e) => setEvidenceDate(e.target.value)}
               />
             </div>
-            
-            <select
-              className="anomaly-dropdown"
-              style={{ minWidth: "140px", padding: "8px 12px", fontSize: "13px" }}
-              value={evidenceSeverity}
-              onChange={(e) => setEvidenceSeverity(e.target.value)}
-            >
-              <option value="All">All Severities</option>
-              <option value="Critical">Critical</option>
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
-            </select>
           </div>
         </div>
 
@@ -514,7 +507,7 @@ function AnomalyDetail() {
                       </span>
                     </div>
                   </div>
-                  <button type="button" className="evidence-btn-view">
+                  <button type="button" className="evidence-btn-view" onClick={() => setSelectedEvidence(ev)}>
                     View Evidence
                   </button>
                 </div>
@@ -529,6 +522,114 @@ function AnomalyDetail() {
       </div>
 
 
+      {/* Evidence Detail Modal */}
+      {selectedEvidence && (
+        <div
+          className="ev-modal-overlay"
+          onClick={() => setSelectedEvidence(null)}
+        >
+          <div
+            className="ev-modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="ev-modal-header">
+              <div>
+                <h2 style={{ margin: 0, fontSize: "17px", fontWeight: 600 }}>Evidence File — {selectedEvidence.camera}</h2>
+                <p style={{ margin: "4px 0 0", fontSize: "12px", color: "var(--text-secondary)" }}>Case ID: EV-{Math.floor(Math.random() * 90000) + 10000} &nbsp;|&nbsp; Captured: {selectedEvidence.timestamp}</p>
+              </div>
+              <button className="ev-modal-close" onClick={() => setSelectedEvidence(null)}>✕</button>
+            </div>
+
+            {/* Two-Column Body */}
+            <div className="ev-modal-body">
+
+              {/* Left: Simulated CCTV Frame */}
+              <div className="ev-modal-frame-col">
+                <div className="ev-mock-feed">
+                  {/* Fake CCTV rendered background — no real image needed */}
+                  <div className="ev-cctv-scene">
+                    {/* Dark street silhouette layers */}
+                    <div className="ev-scene-road" />
+                    <div className="ev-scene-buildings" />
+                    <div className="ev-scene-vehicle" />
+                    {/* Scan-line + noise overlays */}
+                    <div className="ev-scanlines" />
+                    <div className="ev-grain" />
+                  </div>
+
+                  {/* Bounding box with corner brackets */}
+                  <div className="ev-bbox">
+                    <span className="ev-bbox-label">{data.title} &nbsp; {selectedEvidence.confidence}</span>
+                    <div className="ev-bbox-corner tl" />
+                    <div className="ev-bbox-corner tr" />
+                    <div className="ev-bbox-corner bl" />
+                    <div className="ev-bbox-corner br" />
+                  </div>
+
+                  {/* HUD overlays */}
+                  <div className="ev-hud-tl">CAM: {selectedEvidence.camera} &nbsp;|&nbsp; TGICCC-NET</div>
+                  <div className="ev-hud-tr ev-hud-rec"><span className="ev-rec-dot" />REC</div>
+                  <div className="ev-hud-bl">{selectedEvidence.timestamp}</div>
+                  <div className="ev-hud-br">HYDERABAD TGICCC</div>
+
+                  {/* Green detection grid cross-hair */}
+                  <div className="ev-crosshair-h" />
+                  <div className="ev-crosshair-v" />
+                </div>
+                {/* Action bar */}
+                <div className="ev-modal-actions">
+                  <button className="ev-action-btn primary">⬇ Download Frame</button>
+                  <button className="ev-action-btn">📋 Copy Case ID</button>
+                  <button className="ev-action-btn danger">🚨 Flag for Review</button>
+                </div>
+              </div>
+
+              {/* Right: Metadata Panels */}
+              <div className="ev-modal-meta-col">
+
+                {/* AI Detection */}
+                <div className="ev-meta-card">
+                  <div className="ev-meta-card-title">🤖 AI Detection Result</div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Anomaly Type</span><span className="ev-meta-val">{selectedEvidence.anomaly || data.title}</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Confidence Score</span><span className="ev-meta-val highlight">{selectedEvidence.confidence}</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Model Version</span><span className="ev-meta-val">TGICCC-Vision v3.2.1</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Inference Time</span><span className="ev-meta-val">42 ms</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Frame Resolution</span><span className="ev-meta-val">1920 × 1080 px</span></div>
+                </div>
+
+                {/* OCR / Extracted Data */}
+                <div className="ev-meta-card">
+                  <div className="ev-meta-card-title">🔍 Extracted Data (OCR / Biometric)</div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Plate / ID</span><span className="ev-meta-val highlight">TS 09 AB 4872</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Match Score</span><span className="ev-meta-val">97.4%</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Database Hit</span><span className="ev-meta-val danger">⚠ Flagged Vehicle</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Last Seen</span><span className="ev-meta-val">06 Jul 2025 — 09:31 AM</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Registered Owner</span><span className="ev-meta-val">Ravi Kumar Reddy</span></div>
+                </div>
+
+                {/* Location & Camera */}
+                <div className="ev-meta-card">
+                  <div className="ev-meta-card-title">📍 Location & Camera</div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Camera ID</span><span className="ev-meta-val">{selectedEvidence.camera}</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Location</span><span className="ev-meta-val">{selectedEvidence.location}</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Coordinates</span><span className="ev-meta-val">17.3850° N, 78.4867° E</span></div>
+                  <div className="ev-meta-row"><span className="ev-meta-lbl">Camera Health</span><span className="ev-meta-val" style={{ color: "#16a34a" }}>● Online</span></div>
+                </div>
+
+                {/* Audit Chain */}
+                <div className="ev-meta-card">
+                  <div className="ev-meta-card-title">🔗 Audit Chain</div>
+                  <div className="ev-audit-entry"><span className="ev-audit-time">Now</span><span>Viewed by Operator #4291</span></div>
+                  <div className="ev-audit-entry"><span className="ev-audit-time">{selectedEvidence.timestamp}</span><span>Auto-captured by AI Engine</span></div>
+                  <div className="ev-audit-entry"><span className="ev-audit-time">—</span><span>Uploaded to Evidence Store</span></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

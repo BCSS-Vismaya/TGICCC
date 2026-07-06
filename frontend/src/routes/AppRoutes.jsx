@@ -9,6 +9,7 @@ import SystemStatus from "../pages/SystemStatus";
 import NotificationConfig from "../pages/NotificationConfig";
 import Settings from "../pages/Settings";
 import OperatorProfile from "../pages/OperatorProfile";
+import AlertDetail from "../pages/AlertDetail";
 
 function AppRoutes({ onLogout }) {
   return (
@@ -17,6 +18,7 @@ function AppRoutes({ onLogout }) {
       <Route path="/frs" element={<FaceRecognition />} />
       <Route path="/anomalies" element={<Anomalies />} />
       <Route path="/anomalies/:type" element={<AnomalyDetail />} />
+      <Route path="/alerts/:id" element={<AlertDetail />} />
       <Route path="/assistant" element={<AIAssistant />} />
       <Route path="/system-status" element={<SystemStatus />} />
       <Route
