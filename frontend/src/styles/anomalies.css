@@ -24,18 +24,19 @@
 }
 
 .anomaly-title-block .module-tag {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: var(--module-tag-size);
+  font-weight: var(--module-tag-weight);
+  letter-spacing: var(--module-tag-spacing);
   color: var(--text-secondary);
   text-transform: uppercase;
 }
 
 .anomaly-title-block h1 {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 28px;
+  font-weight: var(--fw-extrabold);
   color: var(--text-primary);
   margin-top: 16px;
+  letter-spacing: -0.02em;
 }
 
 .anomaly-title-block p {
@@ -59,7 +60,7 @@
   border-radius: 12px;
   padding: 12px 24px;
   min-width: 130px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -67,15 +68,15 @@
 }
 
 .anomaly-stat-panel span {
-  font-size: 10px;
-  font-weight: 700;
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
   color: var(--text-secondary);
-  letter-spacing: 1px;
+  letter-spacing: var(--micro-spacing);
   text-transform: uppercase;
 }
 
 .anomaly-stat-panel h2 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--text-primary);
   margin-top: 4px;
@@ -87,6 +88,20 @@
 }
 
 .anomaly-stat-panel.red h2 {
+  color: var(--critical);
+}
+
+/* Severity stat panel custom text colors */
+.anomaly-stat-panel.severity-box.low h2 {
+  color: var(--low);
+}
+.anomaly-stat-panel.severity-box.medium h2 {
+  color: var(--medium);
+}
+.anomaly-stat-panel.severity-box.high h2 {
+  color: var(--high);
+}
+.anomaly-stat-panel.severity-box.critical h2 {
   color: var(--critical);
 }
 
@@ -109,10 +124,10 @@
 }
 
 .anomaly-section-header h3 {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: var(--fw-extrabold);
   color: var(--text-secondary);
-  letter-spacing: 1.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -211,18 +226,19 @@
 .anomaly-panel-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .anomaly-panel-card h3 {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: var(--fw-extrabold);
   color: var(--text-primary);
+  letter-spacing: -0.01em;
   border-left: 4px solid var(--primary);
   padding-left: 12px;
 }
@@ -250,7 +266,7 @@
 
 .detection-snapshot {
   height: 140px;
-  background: #e2e8f0;
+  background: #0b1528;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -389,7 +405,7 @@
 
 .evidence-preview-box {
   height: 180px;
-  background: #e2e8f0;
+  background: #0b1528;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -493,7 +509,7 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -502,7 +518,7 @@
 
 .camera-health-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
   border-color: #cbd5e1;
 }
 

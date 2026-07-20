@@ -378,8 +378,17 @@ function AlertDetail() {
           </div>
 
           {/* Card 4: Location Map */}
-          <div className="status-panel-card" style={{ padding: "16px" }}>
-            <h3 style={{ margin: "0 0 12px 0" }}>Camera Staging Map</h3>
+          <div className="status-panel-card" style={{ padding: "0", overflow: "hidden" }}>
+            <div style={{ padding: "16px 16px 12px 16px", borderBottom: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h3 style={{ margin: "0" }}>Camera Staging Map</h3>
+              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)" }}>
+                  <span style={{ display: "inline-block", width: "8px", height: "8px", background: "var(--critical)", borderRadius: "50%", marginRight: "4px" }}></span>
+                  Incident
+                </span>
+                <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)" }}>LAST SYNC: JUST NOW</span>
+              </div>
+            </div>
             <div className="alert-map-box">
               <MapContainer 
                 center={coords} 

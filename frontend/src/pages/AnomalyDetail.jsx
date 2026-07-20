@@ -259,34 +259,35 @@ function AnomalyDetail() {
       {/* Header section with Stats */}
       <div className="anomaly-header-wrapper">
         <div className="anomaly-title-block">
-          <h1 style={{ display: "inline-flex", alignItems: "center", gap: "12px" }}>
+          <h1>
             {data.title}
-            <span className={`priority-tag ${getSeverity(data.title).toLowerCase()}`} style={{ fontSize: "14px", padding: "4px 10px", borderRadius: "6px", margin: 0, textTransform: "uppercase" }}>
-              {getSeverity(data.title)}
-            </span>
           </h1>
         </div>
 
         <div className="anomaly-stats-grid">
+          <div className={`anomaly-stat-panel severity-box ${getSeverity(data.title).toLowerCase()}`}>
+            <span>Severity</span>
+            <h2>{getSeverity(data.title)}</h2>
+          </div>
           <div className="anomaly-stat-panel">
             <span>Detections</span>
-            <h2>{data.stats.detections}</h2>
+            <h2>10</h2>
           </div>
           <div className="anomaly-stat-panel green">
             <span>Active Cams</span>
-            <h2>{data.stats.activeCams}</h2>
+            <h2>3</h2>
           </div>
           <div className="anomaly-stat-panel">
             <span>Total Cams</span>
-            <h2>{data.stats.totalCams}</h2>
+            <h2>3</h2>
           </div>
         </div>
       </div>
 
-      {/* Camera Health Section */}
+      {/* Camera Status Section */}
       <div className="anomaly-panel-card">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h3>Camera Health &bull; {data.title}</h3>
+          <h3>Camera Status &bull; {data.title}</h3>
           <span className="module-tag">{filteredCameras.length} cameras</span>
         </div>
 
@@ -305,7 +306,7 @@ function AnomalyDetail() {
                 <div className="camera-card-name">{cam.name}</div>
                 
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px", marginBottom: "4px" }}>
-                  <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)" }}>Health</span>
+                  <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)" }}>Status</span>
                   <span className={`badge ${getHealthStatusBadgeClass(cam.health, cam.status)}`}>
                     {getHealthStatus(cam.health, cam.status)}
                   </span>
@@ -315,7 +316,6 @@ function AnomalyDetail() {
                   <span className="camera-heartbeat">
                     <FiClock /> {cam.heartbeat}
                   </span>
-                  <span className="camera-model-tag">{cam.aiModel}</span>
                 </div>
               </div>
             ))
@@ -328,9 +328,9 @@ function AnomalyDetail() {
       </div>
 
       {/* interactive map section */}
-      <div className="anomaly-map-section">
-        <div className="anomaly-section-header">
-          <h3>Hyderabad &bull; {data.title} Cameras</h3>
+      <div className="status-panel-card anomaly-map-section" style={{ padding: "0", overflow: "hidden" }}>
+        <div className="anomaly-section-header" style={{ padding: "16px", borderBottom: "1px solid var(--border)", margin: 0 }}>
+          <h3 style={{ margin: 0 }}>Hyderabad &bull; {data.title} Cameras</h3>
           <div className="anomaly-map-legend">
             <div className="anomaly-legend-item">
               <span className="anomaly-legend-dot green"></span>
@@ -433,7 +433,7 @@ function AnomalyDetail() {
             filteredDetections.map((det) => (
               <div key={det.id} className="detection-card">
                 <div className="detection-snapshot">
-                  <img src={det.snapshot} alt={det.location} />
+                  <img src={det.snapshot ? det.snapshot.replace(/%23[a-zA-Z0-9]{6}/gi, "%230b1528") : ""} alt={det.location} />
                   <span className={`detection-severity-tag ${getSeverity(data.title).toLowerCase()}`}>
                     {getSeverity(data.title)}
                   </span>
@@ -483,7 +483,7 @@ function AnomalyDetail() {
             filteredEvidence.map((ev) => (
               <div key={ev.id} className="evidence-card">
                 <div className="evidence-preview-box">
-                  <img src={ev.snapshot} alt={ev.location} />
+                  <img src={ev.snapshot ? ev.snapshot.replace(/%23[a-zA-Z0-9]{6}/gi, "%230b1528") : ""} alt={ev.location} />
                   <span className="evidence-badge">{ev.camera}</span>
                 </div>
                 <div className="evidence-details-box">

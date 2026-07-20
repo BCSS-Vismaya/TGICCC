@@ -1,7 +1,7 @@
 :root {
   /* Light Theme Variables - Soft, premium, warm gray/slate tone */
   --primary: #4F7359;
-  --bg-primary: #FAF9F6;       /* Extremely subtle warm gray background */
+  --bg-primary: #F6F7F8;       /* Subtle warm gray enterprise background */
   --bg-sidebar: #1C2421;       /* Premium deep forest-charcoal sidebar (no blue) */
   --bg-nav-hover: #2A3632;     /* Muted sage-charcoal hover */
   --selected-nav: #4F7359;     /* Brand primary active state */
@@ -36,9 +36,9 @@
 /* Dark Theme Variables - Palantir/Stripe style premium dark */
 .dark-theme {
   --bg-primary: #0B0F19;       /* Soft dark navy background */
-  --bg-sidebar: #111614;       /* Deepest forest-charcoal sidebar (no blue) */
-  --bg-nav-hover: #1A221E;     /* Sleek dark forest-charcoal hover */
-  --selected-nav: #4F7359;     /* Brand primary green */
+  --bg-sidebar: #0B1424;       /* Deep navy / slate-blue */
+  --bg-nav-hover: #162844;     /* Sidebar Hover */
+  --selected-nav: #1F3A5C;     /* Active Navigation */
   --surface: #162032;          /* Deep slate-blue card surfaces */
   --border: #243048;           /* Thinner, muted gray-blue border */
   --text-primary: #F9FAFB;     /* High-contrast off-white */
@@ -69,6 +69,7 @@ body,
 .page-content,
 .card,
 .anomaly-panel-card,
+.anomaly-stat-panel,
 .camera-health-card,
 .detection-card,
 .evidence-card,
@@ -132,22 +133,82 @@ button {
 }
 
 /* Sidebar Menu Overrides */
-.dark-theme .menu-item {
-  color: var(--text-secondary) !important;
+.dark-theme .menu-item,
+.dark-theme .submenu-item {
+  color: #B8C4D8 !important;
+  background: transparent !important;
   transition: all 0.2s ease !important;
+}
+
+.dark-theme .menu-item svg,
+.dark-theme .submenu-item svg {
+  color: #7A8EAC !important;
+  transition: color 0.2s ease !important;
 }
 
 .dark-theme .menu-item:hover,
 .dark-theme .submenu-item:hover {
-  background: var(--bg-nav-hover) !important;
-  color: var(--text-primary) !important;
+  background: #162844 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark-theme .menu-item:hover svg,
+.dark-theme .submenu-item:hover svg {
+  color: #ffffff !important;
 }
 
 .dark-theme .menu-item.active,
 .dark-theme .submenu-item.active {
-  background: var(--primary) !important;
+  background: #1F3A5C !important;
   color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(79, 115, 89, 0.25) !important;
+  box-shadow: none !important;
+  position: relative !important;
+}
+
+.dark-theme .menu-item.active::before,
+.dark-theme .submenu-item.active::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 15% !important;
+  height: 70% !important;
+  width: 4px !important;
+  background: #4F7359 !important; /* Sage green accent */
+  border-radius: 0 4px 4px 0 !important;
+}
+
+.dark-theme .menu-item.active svg,
+.dark-theme .submenu-item.active svg {
+  color: #ffffff !important;
+}
+
+/* Sidebar dividers and sections border overrides for Dark Theme */
+.dark-theme .sidebar-logo,
+.dark-theme .sidebar-footer,
+.dark-theme .sidebar-operator-section,
+.dark-theme .enterprise-meta {
+  border-color: #223452 !important;
+}
+
+/* Powered by Logo Contrast Override */
+.dark-theme .powered-by-logo {
+  opacity: 0.45 !important;
+}
+
+.dark-theme .powered-by-logo:hover {
+  opacity: 0.75 !important;
+}
+
+/* System Status Indicator Emerald Theme Override */
+.dark-theme .system-status-indicator {
+  color: #22C55E !important;
+  border-bottom-color: #223452 !important;
+}
+
+.dark-theme .pulse-dot {
+  background-color: #22C55E !important;
+  box-shadow: 0 0 6px #22C55E !important;
 }
 
 /* Cards & Panel Layouts */
@@ -166,7 +227,7 @@ button {
   border-color: var(--border) !important;
   color: var(--text-primary) !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  border-radius: 16px !important;
+  border-radius: 12px !important;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
               box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
               border-color 0.25s ease !important;
@@ -192,7 +253,7 @@ button {
   background: var(--surface) !important;
   border-color: var(--border) !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-  border-radius: 14px !important;
+  border-radius: 12px !important;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
               box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
               border-color 0.25s ease !important;
@@ -207,7 +268,7 @@ button {
 .dark-theme .anomaly-control-bar {
   background: var(--surface) !important;
   border-color: var(--border) !important;
-  border-radius: 14px !important;
+  border-radius: 12px !important;
 }
 
 .dark-theme .detection-card,
@@ -265,10 +326,14 @@ button {
 
 /* Tables */
 .dark-theme table,
-.dark-theme th,
-.dark-theme td,
 .dark-theme .status-health-table {
   background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme th,
+.dark-theme td {
   border-color: var(--border) !important;
   color: var(--text-primary) !important;
 }
@@ -283,8 +348,16 @@ button {
   border-bottom-color: var(--border) !important;
 }
 
-.dark-theme tr:hover td {
-  background: rgba(255, 255, 255, 0.03) !important;
+.dark-theme .status-health-table td {
+  background: var(--surface) !important;
+}
+
+.dark-theme .status-health-table tbody tr:nth-child(even) td {
+  background: #1e293b !important;
+}
+
+.dark-theme .status-health-table tr:hover td {
+  background: #2d3748 !important;
 }
 
 /* Inputs & Form Controls */
@@ -295,9 +368,13 @@ button {
 .dark-theme .anomaly-search-input,
 .dark-theme .date-picker-input,
 .dark-theme .settings-input {
-  background: var(--bg-primary) !important;
+  background-color: var(--bg-primary) !important;
   border-color: var(--border) !important;
   color: var(--text-primary) !important;
+}
+
+.dark-theme .form-select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF' stroke-width='2.5'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>") !important;
 }
 
 .dark-theme input:focus,
@@ -328,7 +405,7 @@ button {
 /* Alerts & Badges - High contrast / Readable in dark theme */
 .dark-theme .badge-green,
 .dark-theme .status-chip.low,
-.dark-theme .status-chip.in-progress,
+.dark-theme .status-chip.resolved,
 .dark-theme .detection-severity-tag.low,
 .dark-theme .notification-badge.info {
   background: rgba(16, 185, 129, 0.15) !important;
@@ -338,7 +415,6 @@ button {
 
 .dark-theme .badge-red,
 .dark-theme .status-chip.critical,
-.dark-theme .status-chip.new,
 .dark-theme .detection-severity-tag.critical {
   background: rgba(239, 68, 68, 0.15) !important;
   color: #f87171 !important;
@@ -357,10 +433,30 @@ button {
 .dark-theme .badge-blue,
 .dark-theme .status-chip.medium,
 .dark-theme .status-chip.acknowledged,
+.dark-theme .status-chip.in-progress,
+.dark-theme .status-chip.new,
 .dark-theme .detection-severity-tag.medium {
   background: rgba(59, 130, 246, 0.15) !important;
   color: #60a5fa !important;
   border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-theme .status-chip.investigating {
+  background: rgba(167, 139, 250, 0.15) !important;
+  color: #a78bfa !important;
+  border-color: rgba(167, 139, 250, 0.3) !important;
+}
+
+.dark-theme .status-chip.assigned {
+  background: rgba(34, 211, 238, 0.12) !important;
+  color: #22d3ee !important;
+  border-color: rgba(34, 211, 238, 0.25) !important;
+}
+
+.dark-theme .status-chip.closed {
+  background: rgba(148, 163, 184, 0.12) !important;
+  color: #94a3b8 !important;
+  border-color: rgba(148, 163, 184, 0.25) !important;
 }
 
 /* Leaflet Map Controls in Dark Theme */
@@ -410,20 +506,79 @@ button {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-.dark-theme .toolbar-search,
-.dark-theme .ops-summary-strip {
+.dark-theme .toolbar-search {
   background: var(--bg-primary) !important;
   border-color: var(--border) !important;
 }
 
-.dark-theme .ops-summary-item strong {
+.dark-theme .toolbar-date-wrapper {
+  background: var(--bg-primary) !important;
+  border-color: var(--border) !important;
+}
+
+.dark-theme .toolbar-date-input {
   color: var(--text-primary) !important;
+  color-scheme: dark;
+}
+
+.dark-theme .toolbar-date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.6;
 }
 
 .dark-theme .frs-match-item.active {
   background: rgba(79, 115, 89, 0.25) !important;
   border-color: var(--primary) !important;
   box-shadow: 0 4px 12px rgba(79, 115, 89, 0.2) !important;
+}
+
+.dark-theme .frs-results-panel,
+.dark-theme .frs-result-row,
+.dark-theme .frs-result-history-item,
+.dark-theme .frs-result-action-btn,
+.dark-theme .frs-results-placeholder {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .frs-results-header,
+.dark-theme .frs-result-history,
+.dark-theme .frs-result-expanded-grid {
+  border-color: var(--border) !important;
+}
+
+.dark-theme .frs-result-expanded-grid,
+.dark-theme .frs-result-expanded-image,
+.dark-theme .frs-result-history-item,
+.dark-theme .frs-result-action-btn {
+  background: var(--surface) !important;
+}
+
+.dark-theme .frs-result-row:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark-theme .frs-result-row.active {
+  background: rgba(79, 115, 89, 0.18) !important;
+}
+
+.dark-theme .frs-result-badge.missing-person {
+  color: #fca5a5 !important;
+  background: rgba(185, 28, 28, 0.18) !important;
+  border-color: rgba(185, 28, 28, 0.3) !important;
+}
+
+.dark-theme .frs-result-badge.high-risk {
+  color: #fcd34d !important;
+  background: rgba(180, 83, 9, 0.16) !important;
+  border-color: rgba(180, 83, 9, 0.3) !important;
+}
+
+.dark-theme .frs-result-badge.wanted {
+  color: #93c5fd !important;
+  background: rgba(29, 78, 216, 0.18) !important;
+  border-color: rgba(29, 78, 216, 0.3) !important;
 }
 
 .dark-theme .frs-match-photo-container,

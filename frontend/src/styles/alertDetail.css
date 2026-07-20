@@ -53,16 +53,18 @@
 
 .alert-title-group h2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-top: 4px;
 }
 
 .alert-id-tag {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--micro-spacing);
   color: var(--text-secondary);
-  letter-spacing: 0.5px;
 }
 
 .alert-info-table {
@@ -84,9 +86,14 @@
 }
 
 .alert-info-table td.label {
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--micro-spacing);
   color: var(--text-secondary);
-  font-weight: 600;
   width: 140px;
+  vertical-align: top;
+  padding-top: 14px;
 }
 
 .alert-info-table td.value {
@@ -237,13 +244,13 @@
 }
 
 .action-btn-custom.alarm {
-  background: rgba(239, 68, 68, 0.08);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.15);
+  background: var(--critical);
+  color: white;
+  border: none;
 }
 
 .action-btn-custom.alarm:hover {
-  background: rgba(239, 68, 68, 0.12);
+  background: #b91c1c;
 }
 
 .alert-timeline-card {

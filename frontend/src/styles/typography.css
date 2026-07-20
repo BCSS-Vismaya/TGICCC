@@ -1,0 +1,200 @@
+/* ============================================================
+   TYPOGRAPHY SYSTEM — TGICCC
+   Single source of truth for all type styles.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. TYPE SCALE — CSS custom properties
+   ---------------------------------------------------------- */
+:root {
+  /* Font weights */
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+  --fw-black:     900;
+
+  /* Micro-label (e.g. "USERNAME", "CASE NUMBER", "CAMERA ID") */
+  --micro-size:    10.5px;
+  --micro-weight:  700;
+  --micro-spacing: 0.08em;
+
+  /* Module/eyebrow tag (e.g. "TRAFFIC & GEO-INTEGRATED...") */
+  --module-tag-size:    11px;
+  --module-tag-weight:  700;
+  --module-tag-spacing: 0.12em;
+
+  /* Card / panel heading */
+  --card-heading-size:   18px;
+  --card-heading-weight: 800;
+
+  /* Page-level section heading */
+  --section-heading-size:   22px;
+  --section-heading-weight: 800;
+
+  /* Page title */
+  --page-title-size:   28px;
+  --page-title-weight: 800;
+}
+
+
+/* ----------------------------------------------------------
+   2. GLOBAL HEADING DEFAULTS
+   ---------------------------------------------------------- */
+h1 {
+  font-size: var(--page-title-size);
+  font-weight: var(--page-title-weight);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-size: var(--section-heading-size);
+  font-weight: var(--section-heading-weight);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h3 {
+  font-size: var(--card-heading-size);
+  font-weight: var(--card-heading-weight);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+h5 {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+h6 {
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+
+/* ----------------------------------------------------------
+   3. UTILITY CLASSES
+   ---------------------------------------------------------- */
+
+/* ——— Micro-label: uppercase stamp on card fields ——— */
+.micro-label {
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--micro-spacing);
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.micro-label--accent {
+  color: var(--primary);
+}
+
+/* ——— Module / eyebrow tag: "FACE RECOGNITION SYSTEM" ——— */
+.module-tag {
+  font-size: var(--module-tag-size);
+  font-weight: var(--module-tag-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--module-tag-spacing);
+  color: var(--text-secondary);
+}
+
+/* ——— Section heading inside panel cards ——— */
+.section-heading {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+/* ——— Card heading: primary title inside a .card ——— */
+.card-heading {
+  font-size: var(--card-heading-size);
+  font-weight: var(--card-heading-weight);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+/* ——— Stat value: large number in telemetry/stat cards ——— */
+.stat-value {
+  font-size: 26px;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+/* ——— Stat label: uppercase label below a stat number ——— */
+.stat-label {
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--micro-spacing);
+  color: var(--text-secondary);
+}
+
+/* ——— Body text helpers ——— */
+.text-body {
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.text-muted {
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+}
+
+/* ——— Field label / cell-label (key-value pairs in cards) ——— */
+/* Note: frs.css also defines .cell-label; this override wins via load order */
+.cell-label {
+  font-size: var(--micro-size) !important;
+  font-weight: var(--micro-weight) !important;
+  text-transform: uppercase !important;
+  letter-spacing: var(--micro-spacing) !important;
+  color: var(--text-secondary) !important;
+}
+
+.cell-value {
+  font-size: 13.5px;
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+/* ——— Dark theme overrides ——— */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5 {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme h6,
+.dark-theme .module-tag,
+.dark-theme .section-heading,
+.dark-theme .micro-label,
+.dark-theme .stat-label,
+.dark-theme .cell-label {
+  color: var(--text-secondary) !important;
+}

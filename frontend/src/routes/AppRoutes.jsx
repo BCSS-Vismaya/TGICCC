@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "../pages/Dashboard";
 import FaceRecognition from "../pages/FaceRecognition";
+import FaceRecognitionProfile from "../pages/FaceRecognitionProfile";
 import Anomalies from "../pages/Anomalies";
 import AnomalyDetail from "../pages/AnomalyDetail";
 import AIAssistant from "../pages/AIAssistant";
@@ -16,6 +17,7 @@ function AppRoutes({ onLogout }) {
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/frs" element={<FaceRecognition />} />
+      <Route path="/frs/:id" element={<FaceRecognitionProfile />} />
       <Route path="/anomalies" element={<Anomalies />} />
       <Route path="/anomalies/:type" element={<AnomalyDetail />} />
       <Route path="/alerts/:id" element={<AlertDetail />} />

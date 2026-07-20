@@ -52,14 +52,14 @@ function TopNavbar({ onLogout }) {
         <div className="navbar-title-small">
           TRAFFIC & GEO-INTEGRATED COMMAND & CONTROL CENTRE
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "2px" }}>
-          <h1 className="navbar-title" style={{ margin: 0 }}>
+        <div style={{ marginTop: "2px" }}>
+          <h1 className="navbar-title" style={{ margin: 0, display: "inline-flex", alignItems: "center", gap: "10px", verticalAlign: "middle" }}>
             Hyderabad Operations
+            <span className="live-badge">
+              <span className="live-dot"></span>
+              LIVE
+            </span>
           </h1>
-          <span className="live-badge">
-            <span className="live-dot"></span>
-            LIVE
-          </span>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ function TopNavbar({ onLogout }) {
           {isDark ? <FiSun /> : <FiMoon />}
         </button>
 
-        <div className="notification-wrapper" ref={dropdownRef}>
+        <div className={`notification-wrapper${isDropdownOpen ? " open" : ""}`} ref={dropdownRef}>
           <button 
             type="button"
             className={`nav-icon-btn notification-btn ${isDropdownOpen ? "active" : ""}`}

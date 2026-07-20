@@ -91,10 +91,10 @@ function SystemStatus() {
         <h3>Camera Status</h3>
         
         <div className="status-table-container">
-          <table className="status-health-table">
+          <table className="status-health-table three-column-equal">
             <thead>
               <tr>
-                <th>Camera</th>
+                <th style={{ textAlign: "center" }}>Camera</th>
                 <th>Location</th>
                 <th>Status</th>
               </tr>

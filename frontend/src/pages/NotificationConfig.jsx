@@ -260,7 +260,7 @@ function NotificationConfig() {
                 <th>Notification</th>
                 <th>Min Severity</th>
                 <th>Channels</th>
-                <th>Actions</th>
+                <th style={{ textAlign: "center" }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -268,13 +268,13 @@ function NotificationConfig() {
                 <tr key={rule.id}>
                   <td style={{ fontWeight: "700" }}>{rule.title}</td>
                   <td>
-                    <label className="toggle-switch">
+                    <label className="form-switch">
                       <input 
                         type="checkbox" 
                         checked={rule.enabled} 
                         onChange={() => handleToggleRule(rule.id)}
                       />
-                      <span className="toggle-slider"></span>
+                      <span className="form-switch-slider"></span>
                     </label>
                   </td>
                   <td>
@@ -293,11 +293,11 @@ function NotificationConfig() {
                   <td style={{ color: "var(--text-secondary)", fontSize: "13px", maxWidth: "250px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {rule.enabled ? rule.channels.join(", ") : "Disabled"}
                   </td>
-                  <td>
+                  <td style={{ textAlign: "center" }}>
                     <button 
                       type="button" 
                       className="frs-btn-outline" 
-                      style={{ padding: "6px 12px", fontSize: "13px", display: "flex", gap: "6px", alignItems: "center" }}
+                      style={{ padding: "6px 12px", fontSize: "13px", display: "inline-flex", gap: "6px", alignItems: "center" }}
                       onClick={() => handleEditClick(rule)}
                     >
                       <FiSettings /> Edit
@@ -375,7 +375,7 @@ function NotificationConfig() {
               <div className="form-section">
                 <label>Enable Notifications</label>
                 <div className="form-control-row">
-                  <label className="toggle-switch">
+                  <label className="form-switch">
                     <input 
                       type="checkbox" 
                       checked={formEnabled}
@@ -389,7 +389,7 @@ function NotificationConfig() {
                         }
                       }}
                     />
-                    <span className="toggle-slider"></span>
+                    <span className="form-switch-slider"></span>
                   </label>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                     {formEnabled ? "Active" : "Inactive"}

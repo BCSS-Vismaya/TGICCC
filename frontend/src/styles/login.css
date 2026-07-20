@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle at center, #20353F 0%, #0C161C 100%);
-  font-family: 'Inter', -apple-system, sans-serif;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -69,6 +68,7 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  margin-top: 15px;
   margin-bottom: 8px;
 }
 
@@ -285,8 +285,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 3px;
+  margin-top: -15px;
   width: 100%;
 }
 
@@ -301,7 +301,7 @@
 .login-powered-by-card {
   background: transparent;
   border-radius: 0;
-  padding: 8px 0;
+  padding: 2px 0;
   display: flex;
   justify-content: center;
   align-items: center;

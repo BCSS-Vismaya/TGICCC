@@ -6,6 +6,7 @@ import App from "./App";
 
 import "./styles/theme.css";
 import "./styles/globals.css";
+import "./styles/typography.css";
 import "./styles/layout.css";
 import "./styles/sidebar.css";
 import "./styles/navbar.css";

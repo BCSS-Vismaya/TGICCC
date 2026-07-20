@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 32px;
+  gap: 32px;
 }
 
 .navbar-left {
@@ -15,19 +16,18 @@
 }
 
 .navbar-title-small {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: var(--module-tag-size);
+  font-weight: var(--module-tag-weight);
+  letter-spacing: var(--module-tag-spacing);
   color: var(--primary);
   text-transform: uppercase;
 }
 
 .navbar-title {
-  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', sans-serif;
-  font-size: 32px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: var(--fw-extrabold);
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 /* Pulse Live Badge */
@@ -139,38 +139,82 @@
 /* Notifications Dropdown Layout & Colors */
 .notification-wrapper {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 
 .notifications-dropdown {
   position: absolute;
   right: 0;
-  top: 55px;
-  width: 320px;
+  top: calc(100% + 10px); /* always 10px below the button's bottom edge */
+  width: 340px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
+  border-radius: 14px;
+  /* Layered shadow: inset accent rail on top + contact shadow + wide ambient */
+  box-shadow:
+    inset 0 3px 0 0 var(--primary),
+    0 4px 6px -2px rgba(15, 23, 42, 0.06),
+    0 12px 24px -4px rgba(15, 23, 42, 0.18),
+    0 32px 48px -8px rgba(15, 23, 42, 0.12);
+  z-index: 1200;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: dropdownFadeIn 0.2s ease-out;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+[data-theme="dark"] .notifications-dropdown {
+  box-shadow:
+    inset 0 3px 0 0 var(--primary),
+    0 4px 6px -2px rgba(0, 0, 0, 0.25),
+    0 12px 28px -4px rgba(0, 0, 0, 0.45),
+    0 32px 52px -8px rgba(0, 0, 0, 0.35);
+}
+
+/* CSS arrow pointer — on the wrapper so it's outside overflow:hidden */
+.notification-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  /* sits between the button bottom and the dropdown top */
+  top: calc(100% + 2px);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 8px solid var(--surface);
+  filter: drop-shadow(0 -2px 2px rgba(15,23,42,0.08));
+  z-index: 1201;
+  /* Only visible while dropdown is open — controlled via JS class */
+  display: none;
+}
+
+.notification-wrapper.open::after {
+  display: block;
 }
 
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(-6px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
+/* Bell button active state when dropdown is open */
+.notification-btn.active {
+  background: rgba(79, 115, 89, 0.08) !important;
+  border-color: rgba(79, 115, 89, 0.3) !important;
+  color: var(--primary) !important;
+}
+
 .dropdown-header {
-  padding: 14px 16px;
+  padding: 12px 16px 10px;
   border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
@@ -180,9 +224,11 @@
 
 .dropdown-header h4 {
   margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--micro-spacing);
+  color: var(--text-secondary);
 }
 
 .dropdown-clear-btn {

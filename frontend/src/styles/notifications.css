@@ -342,13 +342,28 @@
 }
 
 .form-select {
-  padding: 10px 14px;
+  padding: 8px 36px 8px 14px;
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   font-size: 14px;
   outline: none;
   background-color: white;
   width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B' stroke-width='2.5'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 115, 89, 0.15);
 }
 
 .form-checkbox-group {

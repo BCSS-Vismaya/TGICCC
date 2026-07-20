@@ -4,11 +4,13 @@
 }
 
 .sidebar-logo {
-  padding: 24px;
+  height: 84px;
+  padding: 0 24px;
   display: flex;
   gap: 14px;
   align-items: center;
   border-bottom: 1px solid rgba(255,255,255,.08);
+  box-sizing: border-box;
 }
 
 .logo-icon {
@@ -255,4 +257,53 @@
 .btn-sidebar-action:hover {
   background: rgba(255, 255, 255, 0.12);
   color: white;
+}
+
+/* Sidebar Footer Enterprise Meta */
+.enterprise-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meta-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8C9CA6;
+}
+
+.meta-line strong {
+  color: #C7D0D5;
+  font-weight: 600;
+}
+
+.system-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 11px;
+  color: #4CAF50;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #4CAF50;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
 }

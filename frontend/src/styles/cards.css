@@ -1,44 +1,56 @@
 .card {
-  background: white;
-  border: 1px solid #E5E7EB;
-  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   padding: 24px;
-  transition: .2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(15,23,42,.06);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+  border-color: rgba(79, 115, 89, 0.2);
 }
 
 .btn {
   border: none;
   outline: none;
-  border-radius: 10px;
-  padding: 12px 22px;
-  font-size: 15px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.25s;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn-primary {
   background: var(--primary);
   color: white;
+  box-shadow: 0 2px 4px rgba(79, 115, 89, 0.2);
 }
 
 .btn-primary:hover {
-  filter: brightness(95%);
+  filter: brightness(110%);
+  box-shadow: 0 4px 8px rgba(79, 115, 89, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--surface);
   color: var(--text-primary);
   border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .btn-secondary:hover {
-  background: #f5f5f5;
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
 }
 
 .badge {
@@ -122,11 +134,10 @@ margin-bottom:28px;
 }
 
 .section-title h2{
-
-font-size:32px;
-
-margin-bottom:6px;
-
+  font-size: 28px;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.02em;
+  margin-bottom:6px;
 }
 
 .section-title p{
@@ -148,17 +159,18 @@ gap:12px;
 }
 
 .stat-card p{
-
-font-size:15px;
-
-color:#64748B;
-
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--micro-spacing);
+  color:#64748B;
 }
 
 .stat-card h2{
-
-font-size:34px;
-
+  font-size: 32px;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .detail-row{
@@ -184,9 +196,9 @@ font-size:17px;
 }
 
 .status-chip.in-progress {
-  background: rgba(22, 163, 74, 0.08);
-  color: #16a34a;
-  border-color: rgba(22, 163, 74, 0.15);
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.15);
 }
 
 .status-chip.acknowledged {
@@ -202,6 +214,30 @@ font-size:17px;
 }
 
 .status-chip.new {
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.15);
+}
+
+.status-chip.resolved {
+  background: rgba(22, 163, 74, 0.08);
+  color: #16a34a;
+  border-color: rgba(22, 163, 74, 0.15);
+}
+
+.status-chip.investigating {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+  border-color: rgba(124, 58, 237, 0.15);
+}
+
+.status-chip.assigned {
+  background: rgba(14, 116, 144, 0.08);
+  color: #0e7490;
+  border-color: rgba(14, 116, 144, 0.15);
+}
+
+.status-chip.closed {
   background: rgba(100, 116, 139, 0.08);
   color: #64748b;
   border-color: rgba(100, 116, 139, 0.15);

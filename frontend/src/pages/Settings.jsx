@@ -11,7 +11,8 @@ import {
   FiCpu, 
   FiCheckCircle, 
   FiSave,
-  FiX
+  FiX,
+  FiTrash2
 } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
 import incidents from "../data/incidents";
@@ -159,6 +160,27 @@ function Settings() {
     setAddUserOpen(false);
   };
 
+  // Handle Remove User
+  const handleRemoveUser = (userId, e) => {
+    e.stopPropagation();
+    const updatedUsers = users.filter(u => u.id !== userId);
+    setUsers(updatedUsers);
+    
+    // Clean up permissions
+    setUserPermissions(prev => {
+      const copy = { ...prev };
+      delete copy[userId];
+      return copy;
+    });
+
+    // Reset selectedUserId if we deleted the currently selected one
+    if (selectedUserId === userId) {
+      setSelectedUserId(updatedUsers.length > 0 ? updatedUsers[0].id : null);
+    }
+
+    toast.success("User removed successfully");
+  };
+
   // Profile save confirmation
   const handleProfileSave = (e) => {
     e.preventDefault();
@@ -220,6 +242,15 @@ function Settings() {
 
           <div className="status-table-container">
             <table className="status-health-table">
+              <colgroup>
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "18%" }} />
+                <col style={{ width: "15%" }} />
+                <col style={{ width: "15%" }} />
+                <col style={{ width: "12%" }} />
+                <col style={{ width: "18%" }} />
+                <col style={{ width: "12%" }} />
+              </colgroup>
               <thead>
                 <tr>
                   <th>ID</th>
@@ -228,6 +259,7 @@ function Settings() {
                   <th>Unit</th>
                   <th>Status</th>
                   <th>Last Active</th>
+                  <th style={{ textAlign: "center" }}>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -245,8 +277,25 @@ function Settings() {
                       </span>
                     </td>
                     <td>{u.unit}</td>
-                    <td>{u.status}</td>
+                    <td>
+                      <span className={`status-chip ${
+                        u.status === "Active" ? "resolved" : 
+                        u.status === "On Leave" ? "pending" : "new"
+                      }`} style={{ padding: "4px 8px", fontSize: "11px", margin: 0 }}>
+                        {u.status}
+                      </span>
+                    </td>
                     <td style={{ color: "var(--text-secondary)" }}>{u.lastActive}</td>
+                    <td style={{ textAlign: "center" }} onClick={(e) => e.stopPropagation()}>
+                      <button 
+                        type="button" 
+                        style={{ fontSize: "16px", cursor: "pointer", border: "none", background: "none", color: "#e5484d", display: "inline-flex", alignItems: "center" }}
+                        title="Remove User"
+                        onClick={(e) => handleRemoveUser(u.id, e)}
+                      >
+                        <FiTrash2 />
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -381,41 +430,53 @@ function Settings() {
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "400px" }}>
-              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-                <input 
-                  type="checkbox"
-                  checked={notifPreferences.email}
-                  onChange={(e) => setNotifPreferences({ ...notifPreferences, email: e.target.checked })}
-                />
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", justifyContent: "space-between" }}>
                 <span style={{ color: "var(--text-primary)" }}>Enable Email Alert Dispatching</span>
-              </label>
+                <label className="form-switch">
+                  <input 
+                    type="checkbox"
+                    checked={notifPreferences.email}
+                    onChange={(e) => setNotifPreferences({ ...notifPreferences, email: e.target.checked })}
+                  />
+                  <span className="form-switch-slider"></span>
+                </label>
+              </div>
               
-              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-                <input 
-                  type="checkbox"
-                  checked={notifPreferences.sms}
-                  onChange={(e) => setNotifPreferences({ ...notifPreferences, sms: e.target.checked })}
-                />
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", justifyContent: "space-between" }}>
                 <span style={{ color: "var(--text-primary)" }}>Enable SMS Text Alerts</span>
-              </label>
+                <label className="form-switch">
+                  <input 
+                    type="checkbox"
+                    checked={notifPreferences.sms}
+                    onChange={(e) => setNotifPreferences({ ...notifPreferences, sms: e.target.checked })}
+                  />
+                  <span className="form-switch-slider"></span>
+                </label>
+              </div>
 
-              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-                <input 
-                  type="checkbox"
-                  checked={notifPreferences.alarm}
-                  onChange={(e) => setNotifPreferences({ ...notifPreferences, alarm: e.target.checked })}
-                />
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", justifyContent: "space-between" }}>
                 <span style={{ color: "var(--text-primary)" }}>Trigger Audio Alarms on Critical Anomalies</span>
-              </label>
+                <label className="form-switch">
+                  <input 
+                    type="checkbox"
+                    checked={notifPreferences.alarm}
+                    onChange={(e) => setNotifPreferences({ ...notifPreferences, alarm: e.target.checked })}
+                  />
+                  <span className="form-switch-slider"></span>
+                </label>
+              </div>
 
-              <label className="form-checkbox-item" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-                <input 
-                  type="checkbox"
-                  checked={notifPreferences.dashboard}
-                  onChange={(e) => setNotifPreferences({ ...notifPreferences, dashboard: e.target.checked })}
-                />
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", justifyContent: "space-between" }}>
                 <span style={{ color: "var(--text-primary)" }}>Display Desktop Dashboard Alerts</span>
-              </label>
+                <label className="form-switch">
+                  <input 
+                    type="checkbox"
+                    checked={notifPreferences.dashboard}
+                    onChange={(e) => setNotifPreferences({ ...notifPreferences, dashboard: e.target.checked })}
+                  />
+                  <span className="form-switch-slider"></span>
+                </label>
+              </div>
 
               <button 
                 type="button" 

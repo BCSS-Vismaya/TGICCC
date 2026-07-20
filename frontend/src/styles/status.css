@@ -21,16 +21,17 @@
 }
 
 .status-header-info .module-tag {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: var(--module-tag-size);
+  font-weight: var(--module-tag-weight);
+  letter-spacing: var(--module-tag-spacing);
   color: var(--text-secondary);
   text-transform: uppercase;
 }
 
 .status-header-info h1 {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 28px;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-top: 4px;
 }
@@ -85,21 +86,24 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   min-height: 76px;
 }
 
 .status-telemetry-card span {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: var(--micro-size);
+  font-weight: var(--micro-weight);
   color: var(--text-secondary);
-  letter-spacing: 0.5px;
+  letter-spacing: var(--micro-spacing);
   text-transform: uppercase;
 }
 
 .status-telemetry-card h2 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1;
   margin-top: 4px;
 }
@@ -124,9 +128,9 @@
 .status-panel-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -158,25 +162,66 @@
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 2px solid var(--border);
   background: #f8fafc;
+  text-align: center;
 }
 
 .status-health-table td {
   padding: 16px 20px;
   font-size: 14px;
   color: var(--text-primary);
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
   vertical-align: middle;
 }
 
-.status-health-table tr:hover td {
+/* Equal alignment for 3-column table (System Status) */
+.status-health-table.three-column-equal th:nth-child(1),
+.status-health-table.three-column-equal td:nth-child(1),
+.status-health-table.three-column-equal th:nth-child(2),
+.status-health-table.three-column-equal td:nth-child(2),
+.status-health-table.three-column-equal th:nth-child(3),
+.status-health-table.three-column-equal td:nth-child(3) {
+  width: 33.33%;
+}
+
+/* Equal alignment for 6-column table (Settings) */
+.status-health-table.six-column-equal th:nth-child(1),
+.status-health-table.six-column-equal td:nth-child(1),
+.status-health-table.six-column-equal th:nth-child(2),
+.status-health-table.six-column-equal td:nth-child(2),
+.status-health-table.six-column-equal th:nth-child(3),
+.status-health-table.six-column-equal td:nth-child(3),
+.status-health-table.six-column-equal th:nth-child(4),
+.status-health-table.six-column-equal td:nth-child(4),
+.status-health-table.six-column-equal th:nth-child(5),
+.status-health-table.six-column-equal td:nth-child(5),
+.status-health-table.six-column-equal th:nth-child(6),
+.status-health-table.six-column-equal td:nth-child(6) {
+  width: 16.66%;
+}
+
+.status-health-table tbody tr:nth-child(even) td {
   background: #f8fafc;
+}
+
+.status-health-table tr:hover td {
+  background: #f1f5f9;
+}
+
+.dark-theme .status-health-table tbody tr:nth-child(even) td {
+  background: #1e293b !important;
+}
+
+.dark-theme .status-health-table tr:hover td {
+  background: #2d3748 !important;
 }
 
 .camera-cell {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-weight: 700;
   color: var(--text-secondary);

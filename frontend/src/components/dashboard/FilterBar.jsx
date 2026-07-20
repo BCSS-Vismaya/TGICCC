@@ -1,4 +1,5 @@
-import { FiSearch, FiRefreshCw } from "react-icons/fi";
+import { useRef } from "react";
+import { FiSearch, FiRefreshCw, FiX } from "react-icons/fi";
 
 function FilterBar({ 
   searchQuery, 
@@ -6,16 +7,22 @@ function FilterBar({
   severityFilter, 
   setSeverityFilter, 
   sortBy, 
-  setSortBy, 
+  setSortBy,
+  dateFilter,
+  setDateFilter,
   lastUpdated, 
   onRefresh 
 }) {
+  const dateInputRef = useRef(null);
+
   return (
     <div className="dashboard-toolbar">
-      {/* Search Input Box */}
+      {/* Left group: search + date picker + filters */}
       <div className="toolbar-left-group">
+
+        {/* Search */}
         <div className="toolbar-search">
-          <FiSearch />
+          <FiSearch className="toolbar-search-icon" />
           <input
             type="text"
             placeholder="Search Incidents..."
@@ -24,12 +31,41 @@ function FilterBar({
           />
         </div>
 
-        {/* Severity filter select dropdown */}
+        {/* Date Picker — single native calendar icon only */}
+        <div
+          className="toolbar-date-wrapper"
+          onClick={() => dateInputRef.current?.showPicker?.()}
+        >
+          <input
+            ref={dateInputRef}
+            type="date"
+            id="date-filter"
+            className="toolbar-date-input"
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+            title="Filter by alert date"
+          />
+          {dateFilter && (
+            <button
+              type="button"
+              className="toolbar-date-clear"
+              onClick={(e) => { e.stopPropagation(); setDateFilter(""); }}
+              title="Clear date filter"
+            >
+              <FiX />
+            </button>
+          )}
+        </div>
+
+        {/* Severity Divider */}
+        <div className="toolbar-divider" />
+
+        {/* Severity filter */}
         <div className="toolbar-select-wrapper">
           <label htmlFor="severity-select">Severity:</label>
           <select
             id="severity-select"
-            className="toolbar-select"
+            className="toolbar-select toolbar-select--severity"
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
           >
@@ -41,29 +77,31 @@ function FilterBar({
           </select>
         </div>
 
-        {/* Sort By select dropdown */}
+        {/* Sort filter */}
         <div className="toolbar-select-wrapper">
           <label htmlFor="sort-select">Sort:</label>
           <select
             id="sort-select"
-            className="toolbar-select"
+            className="toolbar-select toolbar-select--sort"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value="Time">Time (Newest)</option>
-            <option value="Severity">Severity (Highest)</option>
-            <option value="Status">Status Name</option>
+            <option value="All">All Incidents</option>
+            <option value="TimeNewest">Time (Newest)</option>
+            <option value="TimeOldest">Time (Oldest)</option>
+            <option value="StatusNew">Status: New</option>
+            <option value="StatusAcknowledged">Status: Acknowledged</option>
+            <option value="StatusInProgress">Status: In Progress</option>
+            <option value="StatusResolved">Status: Resolved</option>
           </select>
         </div>
+
       </div>
 
-      {/* Right details group: Timestamp + Refresh */}
+      {/* Right group: Refresh button */}
       <div className="toolbar-right-group">
-        <span className="toolbar-timestamp">
-          Last Updated: {lastUpdated}
-        </span>
-        <button 
-          type="button" 
+        <button
+          type="button"
           className="btn-toolbar-refresh"
           title="Refresh Queue"
           onClick={onRefresh}
